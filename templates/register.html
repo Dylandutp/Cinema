@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register Page</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div>
+            <label>ID:</label>
+            <input type="text" name="ID" id="ID"><br>
+        </div>
+        <div>
+            <label>Name:</label>
+            <input type="text" name="last_name" id="last_name">
+            <input type="text" name="first_name" id="first_name"><br>
+        </div>
+        <div>
+            <label>Phone:</label>
+            <input type="text" name="phone" id="phone"><br>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="text" name="email" id="email"><br>
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="text" name="pwd" id="pwd"><br>
+        </div>
+        <button id='submit' type='button'>Submit</button>
+        
+        <script type=text/javascript>
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
+
+        <script language="javascript" type="text/javascript">
+            $("#submit").click(function(){
+                var formData = new FormData();
+                formData.append('ID', $("#ID").val());
+                formData.append('name', $("#last_name").val() + $("#first_name").val());
+                formData.append('phone', $("#phone").val());
+                formData.append('email', $("#email").val());
+                formData.append('pwd', $("#pwd").val());
+
+                $.ajax({
+                    type: "POST",
+                    url: $SCRIPT_ROOT + "/register",
+                    dataType: "json",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: (data) => {
+                        if (data.exist) {
+                            alert("User exist")
+                            location.href = $SCRIPT_ROOT + "/login"
+                        } else {
+                            alert("Success");
+                            location.href = $SCRIPT_ROOT + "/login"
+                        }
+                    }
+                });
+            });
+
+        </script>
+    </body>
+</html>
