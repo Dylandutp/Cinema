@@ -64,5 +64,16 @@ def isExist(id, email):
         else:
             return True
 
+# Check whether the password is same
+def isRepeat(id, email, password):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "SELECT password FROM member WHERE IDnumber = '%s' AND email='%s'"
+        cursor.execute(command % (id, email))
+        result = cursor.fetchone()
+        if result[0] == password:
+            return True
+        else:
+            return False 
 # Login("dylandutp@gmail.com", "Dylan0313")
 # isExist('A130778745', 'dylandutp@gmail.com')

@@ -32,6 +32,8 @@ def login():
 # Sign up 
 @app.route("/register", methods=["POST", "GET"])
 def register():
+    if "user" in session:
+        return redirect(url_for("user"))
     if request.method == "POST":
         data = request.form.to_dict()
         if DB.isExist(data.get('id_code'), data.get('email')):
@@ -45,6 +47,8 @@ def register():
 # Forget password
 @app.route("/user_confirm", methods=["POST", "GET"])
 def user_confirm():
+    if "user" in session:
+        return redirect(url_for("user"))
     if request.method == "POST":
         data = request.form.to_dict()
         if DB.isExist(data.get('ID'), data.get('email')):
@@ -61,8 +65,11 @@ def user_confirm():
 # User confirm
 @app.route("/reset_password/<token>", methods=["POST", "GET"])
 def reset_password(token):
+    if "user" in session:
+        return redirect(url_for("user"))
     s = Serializer(app.config['SECRET_KEY'])
     try:
+        # data[0] => id , data[1] => email
         data = s.loads(token)
     except:
         return "Fail"
@@ -70,10 +77,13 @@ def reset_password(token):
         return "Wrong token"
     if request.method == "POST":
         password = request.form['pwd']
-        DB.Update(data[0], data[1], password)
-        return jsonify({'update': True})
+        if DB.isRepeat(data[0], data[1], password):
+            return jsonify({'repeat': True})
+        else:
+            DB.Update(data[0], data[1], password)
+            return jsonify({'repeat': False})
     else:
-        return render_template('password-change2.html')
+        return render_template('password-change2.html', token = token)
 
 # User Page
 @app.route("/user")
