@@ -47,8 +47,6 @@ def register():
 # Forget password
 @app.route("/user_confirm", methods=["POST", "GET"])
 def user_confirm():
-    if "user" in session:
-        return redirect(url_for("user"))
     if request.method == "POST":
         data = request.form.to_dict()
         if DB.isExist(data.get('ID'), data.get('email')):
@@ -62,11 +60,9 @@ def user_confirm():
     else:
         return render_template('password-change1.html')
 
-# User confirm
+# Reset Password 
 @app.route("/reset_password/<token>", methods=["POST", "GET"])
 def reset_password(token):
-    if "user" in session:
-        return redirect(url_for("user"))
     s = Serializer(app.config['SECRET_KEY'])
     try:
         # data[0] => id , data[1] => email
@@ -80,17 +76,52 @@ def reset_password(token):
         if DB.isRepeat(data[0], data[1], password):
             return jsonify({'repeat': True})
         else:
-            DB.Update(data[0], data[1], password)
+            DB.UpdatePassword(data[0], data[1], password)
             return jsonify({'repeat': False})
     else:
         return render_template('password-change2.html', token = token)
 
+# Reset Email
+@app.route("/reset_email", methods=["POST", "GET"])
+def reset_email():
+    if not "user" in session:
+        redirect(url_for("login"))
+    memberID = session["user"]
+    if request.method == "POST":
+        email = request.form["email"]
+        if DB.isExist('1', email):
+            return jsonify({'exist': True})
+        reset_serializer = Serializer(app.config['SECRET_KEY'])
+        token = reset_serializer.dumps([memberID, email])
+        html = render_template('email_reset_email.html', user='user', token=token)
+        send_eamil("Confirm Email", email, 'html', message=html)
+        return jsonify({'exist': False})
+    else:
+        # data => [memberID, ID, name, email, password, phone, birthdate, points]
+        return render_template("account-change.html", memberID = memberID)
+        
+# Change birthday
+@app.route("/change_birthday", methods=["POST", "GET"])
+def change_birthdate():
+    if not "user" in session:
+        return redirect(url_for("login"))
+    memberID = session["user"]
+    if request.method == "POST":
+        birthday = request.form["birthday"]
+        DB.UpdateBirth(memberID, birthday)
+        return jsonify({'success': True})
+    else:
+        return render_template("birth-change.html")
+    
+    
 # User Page
 @app.route("/user")
 def user():
     if "user" in session:
-        user = session["user"]
-        return render_template("user.html", user=user)
+        memberID = session["user"]
+        # data => [memberID, ID, name, email, password, phone, birthdate, points, isChanged]
+        data = DB.getData(memberID)
+        return render_template("member-info.html", email = data[3], ID = data[1], birthdate = str(data[6]), phone = data[5], points = data[7], ischange = data[8])
     else:
         return redirect(url_for("login"))
     
@@ -99,6 +130,20 @@ def user():
 def logout():
     session.pop("user", None)
     return redirect(url_for("login"))
+
+# change seccessful
+@app.route("/success_change/<token>")
+def success_change(token):
+    s = Serializer(app.config['SECRET_KEY'])
+    try:
+        # data => [memberID, email]
+        data = s.loads(token)
+    except:
+        return "Fail"
+    if not data:
+        return "Wrong token"
+    DB.UpdateEmail(data[0], data[1])
+    return render_template("success_change.html")
 
 if __name__ == '__main__':
     app.run()

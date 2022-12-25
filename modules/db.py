@@ -27,8 +27,8 @@ def Insert(id, name, email, password, phone, birthday):
         except:
            connection.rollback() 
 
-# Update
-def Update(id, email, password):
+# Update password
+def UpdatePassword(id, email, password):
    connection.ping(reconnect=True) 
    with connection.cursor() as cursor:
         command = "UPDATE member SET password = '%s' WHERE IDnumber = '%s' AND email='%s'"
@@ -37,6 +37,28 @@ def Update(id, email, password):
             connection.commit()
         except:
             connection.rollback() 
+
+# Update email
+def UpdateEmail(id, email):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "UPDATE member SET email = '%s' WHERE member_id = '%s'"
+        try:
+            cursor.execute(command % (email, id))
+            connection.commit()
+        except:
+            connection.rollback()
+        
+# Update birthday
+def UpdateBirth(memberID, date):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "UPDATE member SET birthday = '%s' , birthchange = 1 WHERE member_id = '%s'"
+        try:
+            cursor.execute(command % (date, memberID))
+            connection.commit()
+        except:
+            connection.rollback()
 
 # Login
 def Login(email, password):
@@ -56,7 +78,7 @@ def Login(email, password):
 def isExist(id, email):
     connection.ping(reconnect=True)
     with connection.cursor() as cursor:
-        command = "SELECT * FROM member WHERE IDnumber = '%s' AND email='%s'"
+        command = "SELECT * FROM member WHERE IDnumber = '%s' OR email='%s'"
         cursor.execute(command % (id, email))
         result = cursor.fetchone()
         if result == None:
@@ -75,5 +97,14 @@ def isRepeat(id, email, password):
             return True
         else:
             return False 
+
+# Get user information
+def getData(memberID):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "SELECT * FROM member WHERE member_id = '%s'"
+        cursor.execute(command % (memberID))
+        result = cursor.fetchone()
+        return result
 # Login("dylandutp@gmail.com", "Dylan0313")
 # isExist('A130778745', 'dylandutp@gmail.com')

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="">
+<head>
+<title>ACCOUNT CHANGE</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
+.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>
+</head>
+<body id="top">
+<div style="padding: 0px;" class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+    </div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+  <!-- ################################################################################################ -->
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div  class="content">
+
+      <!-- ################################################################################################ -->
+      <h2 style="text-align:center;color: black;">更換信箱帳號</h2>
+      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div  style="" class="one_quarter first">欲更換之信箱帳號</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter"><input  required placeholder="請輸入帳號" id="email"></div>
+      </div>
+
+        <div>
+      <input style="margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="寄送驗證信" id="submit">
+        </div>
+      <div id="memberID" d="{{ memberID }}" style="display: none;"></div>
+<!-- JAVASCRIPTS -->
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script language="javascript" type="text/javascript">
+  $("#submit").click(function (e) {
+    var formData = new FormData();
+    formData.append('email', $("#email").val());
+    var memberID = document.getElementById('memberID').getAttribute('d');
+
+    $.ajax({
+      type: "POST",
+      url: $SCRIPT_ROOT + "/reset_email",
+      dataType: "json",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: (data) => {
+        if (data.exist) {
+          alert("The email has been register, please change another one and try again.")
+          location.reload()
+        } else {
+          alert("The confirm email has sent to your mailbox.");
+          location.href = $SCRIPT_ROOT + "/user"
+        }
+      },
+      error: () => {
+        alert("Error")
+      }
+    });
+  });
+</script>
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>

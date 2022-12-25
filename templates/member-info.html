@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="">
+<head>
+<title>MEMBER INFO</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
+.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <ul>
+      <li><i class="fa fa-clock-o"></i> Mon. - Fri. 8am - 5pm</li>
+      <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+      <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+      <li><a href="#" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
+      <li><a href="#" title="Sign Up"><i class="fa fa-lg fa-edit"></i></a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div style="padding: 0px;" class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+    </div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row2">
+    <nav id="mainav" class="hoc clear">
+      <!-- ################################################################################################ -->
+      <ul class="clear">
+        <li class="active"><a class="drop" href="#">請選擇影城</a>
+          <ul>
+            <li class="active"><a href="gallery.html">Gallery</a></li>
+            <li><a href="full-width.html">Full Width</a></li>
+            <li><a href="sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="basic-grid.html">Basic Grid</a></li>
+
+          </ul>
+          <ul>
+            <li class="active"><a href="gallery.html">Gallery</a></li>
+            <li><a href="full-width.html">Full Width</a></li>
+            <li><a href="sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="basic-grid.html">Basic Grid</a></li>
+
+          </ul>
+        </li>
+
+      </ul>
+      <!-- ################################################################################################ -->
+    </nav>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+
+  <!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div  class="content">
+
+      <!-- ################################################################################################ -->
+      <h2 style="text-align:center;color: black;">會員資料</h2>
+      <div style="margin-bottom:20px;" class="group btmspace-50 demo">
+        <div class="one_quarter first">會員帳戶</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ email }}</div>
+      </div>
+      <div style="margin-bottom:20px;" class="group btmspace-50 demo">
+        <div class="one_quarter first">身分證號</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ ID }}</div>
+      </div>
+
+        <div style="margin-bottom:20px;" class="group btmspace-50 demo">
+        <div class="one_quarter first">出生日期</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ birthdate }}</div>
+      </div>
+      <div style="margin-bottom:20px;" class="group btmspace-50 demo">
+        <div class="one_quarter first">手機號碼</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ phone }}</div>
+      </div>
+      <div  style="margin-bottom:20px;" class="group btmspace-50 demo">
+        <div class="one_quarter first">目前擁有的點數</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ points }}</div>
+      </div>
+      <h2 style="text-align:center;" >會員資料</h2>
+      <div>
+      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更換帳號信箱" id="resetEmail">
+      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改出生日期(僅能更換一次)" id="resetBirth">
+      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改登入密碼" id="resetPwd">
+      </div>
+      <div id="isChange" d="{{ ischange }}" style="display: none;"></div>
+
+
+<!-- JAVASCRIPTS -->
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script language="javascript" type="text/javascript">
+  var isChange = document.getElementById('isChange').getAttribute('d');
+  $("#resetPwd").click(() => {
+    location.href = $SCRIPT_ROOT + "/user_confirm"
+  });
+  $("#resetEmail").click(() => {
+    location.href = $SCRIPT_ROOT + "/reset_email"
+  });
+  $("#resetBirth").click(() => {
+    if (isChange == 1) {
+      alert("You can not change the birthday")
+    }
+    else {
+      location.href = $SCRIPT_ROOT + "/change_birthday"
+    }
+  });
+</script>
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+
+
+
+</body>
+</html>

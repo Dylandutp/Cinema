@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="">
+<head>
+<title>威秀影城</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+</head>
+
+<body id="top">
+<div style="padding: 0px;" class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+    </div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div  class="content">
+
+      <!-- ################################################################################################ -->
+      <h2 style="text-align:center;color: black;">更正出生日期</h2>
+      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div style="" class="one_quarter first">欲更正之出生日期</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">
+
+
+        <input required type="date" id="start" name="trip-start"  max = getTime()>
+        </div>
+      </div>
+
+        <div>
+      <input style="margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="確認更正(請注意僅能更正一次)" id="submit">
+        </div>
+<!-- JAVASCRIPTS -->
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script language="javascript" type="text/javascript">
+  $("#submit").click(function (e) {
+    var yes = confirm("Are you sure you want to change the birthdate?")
+    if (yes) {
+      var formData = new FormData();
+      formData.append('birthday', $("#start").val());
+    
+      $.ajax({
+        type: "POST",
+        url: $SCRIPT_ROOT + "/change_birthday",
+        dataType: "json",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: (data) => {
+          if (data.success) {
+            alert("Success")
+            location.href = $SCRIPT_ROOT + "/user"
+          } else {
+            alert("Fail");
+            location.reload()
+          }
+        },
+        error: () => {
+          alert("Error")
+        }
+      });
+    }
+    else {
+      location.reload()
+    }
+  });
+</script>
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+      <script>
+          function getTime()
+          {
+          var date = new Date();
+          var year = date.getFullYear();
+          var month = ('0'+ (date.getMonth() + 1)).slice(-2);
+          var day = ('0' + date.getDate()).slice(-2);
+          // var day = date.getDay();
+          var time = year +'-'+ month +'-'+ day;
+          console.log(time);
+          document.getElementById('time').value = time;
+          //限制不能选择今天之后的日期（加上属性max）
+          document.getElementById('time').setAttribute('max', time);}
+      </script>
+
+</body>
+</html>
