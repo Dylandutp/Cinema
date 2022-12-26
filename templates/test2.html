@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <link rel="shortcut icon" href="#"/>
+    <!-- jquery 連結 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jquery ui 連結 -->
+    <script src = "../static/jquery1.js"></script>
+</head>
+<body>
+<!--<form action="#">-->
+<!--        <select id="selector">-->
+<!--          <option id="theater_01">台北信義威秀影城</option>-->
+<!--          <option id="theater_02">台北信義威秀影城</option>-->
+<!--          <option id="theater_03">台北京站威秀影城</option>-->
+<!--          <option id="theater_04">板橋大遠百威秀影城</option>-->
+<!--          <option id="theater_05">中和環球威秀影城</option>-->
+<!--          <option id="theater_06">林口MITSUI OUTLET PARK威秀影城</option>-->
+<!--          <option id="theater_07">桃園統領威秀影城</option>-->
+<!--          <option id="theater_08">新竹大遠百威秀影城</option>-->
+<!--          <option id="theater_09">新竹巨城威秀影城</option>-->
+<!--          <option id="theater_10">頭份尚順威秀影城</option>-->
+<!--          <option id="theater_11">台中大遠百威秀影城</option>-->
+<!--          <option id="theater_12">台中TIGER CITY威秀影城</option>-->
+<!--          <option id="theater_13">台中大魯閣新時代威秀影城</option>-->
+<!--          <option id="theater_14">台南大遠百威秀影城</option>-->
+<!--          <option id="theater_15">台南FOCUS 威秀影城</option>-->
+<!--          <option id="theater_16">台南南紡威秀影城</option>-->
+<!--          <option id="theater_17">高雄大遠百威秀影城</option>-->
+<!--          <option id="theater_18">花蓮新天堂樂園威秀影城</option>-->
+<!--        </select>-->
+<!--      </form>-->
+
+<!--即時顯示Ｖ值：<span id="theater_value"></span>-->
+
+<p>電影院</p>
+ <div class="theater">
+    <button class = 'theater_01' id = 'theater_choose_01'  onclick = 'theater_01();'>台北信義威秀影城</button>
+    <button class = 'theater_02' id = 'theater_choose_02' onclick = 'theater_02();'>台北京站威秀影城</button>
+    <button class = 'theater_03' id = 'theater_choose_03' onclick = 'theater_03();'>板橋大遠百威秀影城</button>
+<!--        <div id = 'theater_01'>-->
+<!--         <ul>-->
+<!--            <li>選取幼兒園第一優先條件</li>-->
+<!--         </ul>-->
+<!--            <div class = 'childbuttons'>-->
+<!--                <button id ='b1' onclick ='b1();'>公立</button>-->
+<!--                <button id ='b2' style="width: 120px;height: 45px;" onclick ='b2();'>安全問題</button>-->
+<!--                <button id ='b3' style="width: 120px;height: 45px;" onclick ='b3();' >硬體設施</button>-->
+<!--            </div>-->
+<!--         <ul>-->
+<!--            <li>選取幼兒園第二優先條件</li>-->
+<!--         </ul>-->
+<!--            <div class = 'childbuttons'>-->
+<!--                <button id ='b4' onclick ='b4();'>公立</button>-->
+<!--                <button id ='b5' style="width: 120px;height: 45px;" onclick ='b5();'>安全問題</button>-->
+<!--                <button id ='b6' style="width: 120px;height: 45px;" onclick ='b6();' >硬體設施</button>-->
+<!--            </div>-->
+<!--         <ul>-->
+<!--            <li>選取幼兒園第三優先條件</li>-->
+<!--         </ul>-->
+<!--            <div class = 'childbuttons'>-->
+<!--                <button id ='b7' onclick ='b7();'>公立</button>-->
+<!--                <button id ='b8' style="width: 120px;height: 45px;" onclick ='b8();'>安全問題</button>-->
+<!--                <button id ='b9' style="width: 120px;height: 45px;" onclick ='b9();' >硬體設施</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+     <div id="theater_01">
+        <figure>
+          <header class="heading" id = "moive1">台北信義威秀影城</header>
+
+          <ul class="nospace clear">
+              <span id="theater_value"></span>
+            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+
+          </ul>
+
+        </figure>
+      </div>
+     <div id="theater_02">
+        <figure>
+          <header class="heading" id = "moive2">台北京站威秀影城</header>
+          <ul class="nospace clear">
+            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+
+          </ul>
+
+        </figure>
+      </div>
+     <div id="theater_03">
+        <figure>
+          <header class="heading" id = "moive3">板橋大遠百威秀影城</header>
+          <ul class="nospace clear">
+            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <li class="one_quarter"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+
+          </ul>
+
+        </figure>
+      </div>
+ </div>
+
+ <div class="button3">
+            <!-- 國小 -->
+        <div id = 'child2'>
+         <ul>
+            <li>選取國小第一優先條件</li>
+         </ul>
+            <div class = 'childbuttons'>
+                <button id = 'c1' onclick = 'c1();'>公立</button>
+                <button id = 'c2' onclick = 'c2();'style="width: 120px;height: 45px;">社團</button>
+                <button id = 'c3' onclick = 'c3();' style="width: 120px;height: 45px;">學校特色</button>
+            </div>
+         <ul>
+            <li>選取國小第二優先條件</li>
+         </ul>
+            <div class = 'childbuttons'>
+                <button id = 'c4' onclick = 'c4();'>公立</button>
+                <button id = 'c5' onclick = 'c5();'style="width: 120px;height: 45px;">社團</button>
+                <button id = 'c6' onclick = 'c6();' style="width: 120px;height: 45px;">學校特色</button>
+            </div>
+         <ul>
+            <li>選取國小第三優先條件</li>
+         </ul>
+            <div class = 'childbuttons'>
+                <button id = 'c7' onclick = 'c7();'>公立</button>
+                <button id = 'c8' onclick = 'c8();'style="width: 120px;height: 45px;">社團</button>
+                <button id = 'c9' onclick = 'c9();' style="width: 120px;height: 45px;">學校特色</button>
+            </div>
+        </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script>
+
+document.getElementById('choice').onchange = function() {
+alert(this.value);
+}
+
+function showText(){
+    var selectopt = $("selector option:select");
+    console.log(selectopt.val(),selectopt.text());
+    }
+
+
+$("#selector").on("change", function() {
+  $("#selector option:click").each(function () {
+  $("theater_value").html($(this).html());
+  alter('haha');
+  });
+});
+</script>
+
+</body>
+</html>

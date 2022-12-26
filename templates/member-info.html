@@ -6,8 +6,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
 <style type="text/css">
 /* DEMO ONLY */
 .container .demo{text-align:center;}
@@ -100,55 +98,42 @@
       <h2 style="text-align:center;color: black;">會員資料</h2>
       <div style="margin-bottom:20px;" class="group btmspace-50 demo">
         <div class="one_quarter first">會員帳戶</div>
-        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ email }}</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">user@gmail.com</div>
       </div>
       <div style="margin-bottom:20px;" class="group btmspace-50 demo">
         <div class="one_quarter first">身分證號</div>
-        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ ID }}</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">A123***789</div>
       </div>
 
         <div style="margin-bottom:20px;" class="group btmspace-50 demo">
         <div class="one_quarter first">出生日期</div>
-        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ birthdate }}</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">1999/01/01</div>
       </div>
       <div style="margin-bottom:20px;" class="group btmspace-50 demo">
         <div class="one_quarter first">手機號碼</div>
-        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ phone }}</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">0912***678</div>
       </div>
       <div  style="margin-bottom:20px;" class="group btmspace-50 demo">
         <div class="one_quarter first">目前擁有的點數</div>
-        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ points }}</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">1000</div>
       </div>
       <h2 style="text-align:center;" >會員資料</h2>
-      <div>
-      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更換帳號信箱" id="resetEmail">
-      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改出生日期(僅能更換一次)" id="resetBirth">
-      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改登入密碼" id="resetPwd">
-      </div>
-      <div id="isChange" d="{{ ischange }}" style="display: none;"></div>
+        <div>
+          <a href="account-change.html">
+      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更換帳號信箱" >
+          </a>
+          <a href="birth-change.html">
+      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改出生日期(僅能更換一次)" >
+          </a>
+          <a href="password-change1.html">
+      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改登入密碼">
+         </a>
+
+        </div>
+
 
 
 <!-- JAVASCRIPTS -->
-<script type=text/javascript>
-    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-<script language="javascript" type="text/javascript">
-  var isChange = document.getElementById('isChange').getAttribute('d');
-  $("#resetPwd").click(() => {
-    location.href = $SCRIPT_ROOT + "/user_confirm"
-  });
-  $("#resetEmail").click(() => {
-    location.href = $SCRIPT_ROOT + "/reset_email"
-  });
-  $("#resetBirth").click(() => {
-    if (isChange == 1) {
-      alert("You can not change the birthday")
-    }
-    else {
-      location.href = $SCRIPT_ROOT + "/change_birthday"
-    }
-  });
-</script>
 <script src="../layout/scripts/jquery.min.js"></script>
 <script src="../layout/scripts/jquery.backtotop.js"></script>
 <script src="../layout/scripts/jquery.mobilemenu.js"></script>
