@@ -7,10 +7,13 @@ import modules.db as DB
 app = Flask(__name__)
 app.secret_key = "#fdjklas2323jgfdaiombjkasdfjwoeruffcfxadkl"
 
+
 @app.route("/")
 def hello():
     return "Hello, World!"
     
+    
+
 # Login Page
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -27,7 +30,6 @@ def login():
             return redirect(url_for("user"))
         return render_template('log-in-1.html')
 
-    # return DB.Insert(1, 'A130778745', 'Dylan', 'dylandutp@gmail.com', 'Dylan0313', '0955051977')
 
 # Sign up 
 @app.route("/register", methods=["POST", "GET"])
@@ -44,6 +46,7 @@ def register():
     else:
         return render_template('sign-up.html')
 
+
 # Forget password
 @app.route("/user_confirm", methods=["POST", "GET"])
 def user_confirm():
@@ -59,6 +62,7 @@ def user_confirm():
             return jsonify({'exist': False})
     else:
         return render_template('password-change1.html')
+
 
 # Reset Password 
 @app.route("/reset_password/<token>", methods=["POST", "GET"])
@@ -81,6 +85,7 @@ def reset_password(token):
     else:
         return render_template('password-change2.html', token = token)
 
+
 # Reset Email
 @app.route("/reset_email", methods=["POST", "GET"])
 def reset_email():
@@ -100,6 +105,7 @@ def reset_email():
         # data => [memberID, ID, name, email, password, phone, birthdate, points]
         return render_template("account-change.html", memberID = memberID)
         
+
 # Change birthday
 @app.route("/change_birthday", methods=["POST", "GET"])
 def change_birthdate():
@@ -125,11 +131,13 @@ def user():
     else:
         return redirect(url_for("login"))
     
+
 # Logout
 @app.route("/logout")
 def logout():
     session.pop("user", None)
     return redirect(url_for("login"))
+
 
 # change seccessful
 @app.route("/success_change/<token>")
@@ -144,6 +152,7 @@ def success_change(token):
         return "Wrong token"
     DB.UpdateEmail(data[0], data[1])
     return render_template("success_change.html")
+
 
 if __name__ == '__main__':
     app.run()

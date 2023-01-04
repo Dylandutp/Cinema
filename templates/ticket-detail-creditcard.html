@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="" xmlns="http://www.w3.org/1999/html">
+<head>
+<title>Credit-card Page</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<style type="text/css"></style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div style="padding: 0px;" class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+    </div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+
+<div class="wrapper row3">
+  <main style="padding:50px;" class="hoc container clear">
+  <div class="ticket-info">
+      <h1 id="movie_name_ch"><strong>阿凡達</strong></h1>
+      <p id="movie_name_en">Afenda</p>
+      <p id="theater">台北</p>
+      <p id="time"><strong>12/31 17:20</strong></p>
+      <p id="ticket-type"></p><p id="ticket_num">張</p>
+  </div>
+
+  <div class="credit_card">
+    <h1 ><strong style="background-color:gray;color:white;padding:10px;">信用卡付款</strong></h1>
+
+
+      <h2>付款人資訊</h2>
+      <p>電子信箱*</p>
+      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_half first">
+            <input type="text" name='credit_card_email' id="credit_card_email" required="required" placeholder="address@mail.com"></div>
+      </div>
+
+      <h1>信用卡資訊</h1>
+      <p>信用卡號*</p>
+      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_half first">
+            <input type="text" name='credit_card_num' id="credit_card_num" required="required" maxlength="16" pattern="d{16}" placeholder="XXXXXXXXXXXXXXXX" ></div>
+      </div>
+      <p>卡片安全碼*</p>
+      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_half first">
+            <input type="text" name='credit_card_CVV' id="credit_card_CVV"  required="required" maxlength="3" pattern="d{3}" ></div>
+      </div>
+      <p>卡片到期日*</p>
+      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div  style="display:flex;color: #4d4d4d;background: #FFFFFF;" class="one_half first">
+            <select  id="credit_card_month" name="credit_card_month">
+                <option value="">月</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <select id="credit_card_year" name="credit_card_year">
+                <option value="">年</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+            </select>
+        </div>
+
+
+
+
+  </div>
+      <input type="submit" style="width:200px;height:50px;margin-top:50px;" value="付款"/>
+
+
+
+
+
+</div>
+
+
+
+
+
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+
+<!-- jquery 連結 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- jquery ui 連結 -->
+<script src = "../static/jquery2.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous">
+
+</script>
+
+<!-- 資料傳送 -->
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script language="javascript" type="text/javascript">
+
+
+
+    $("submit").click(function(e){
+        var formData = new FormData();
+        formData.append('credit_card', $("#credit_card").val());
+
+        formData.append('credit_card_email', $("#credit_card_email").val());
+        formData.append('credit_card_num', $("#credit_card_num").val());
+        formData.append('credit_card_CVV', $("#credit_card_CVV").val());
+        formData.append('credit_card_month', $("#credit_card_month").val());
+        formData.append('credit_card_year', $("#credit_card_year").val());
+
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: $SCRIPT_ROOT + "/signup",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+                if (data.login) {
+                    alert("Hello")
+                    location.reload()
+                } else {
+                    alert("Wrong");
+                    // location.href = $SCRIPT_ROOT + "/signup"
+                    location.reload()
+                }
+
+            },
+            error: () => {
+                alert("Error")
+            }
+        });
+    });
+
+
+
+</script>
+</body>
+</html>

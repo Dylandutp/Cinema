@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="">
+<head>
+<title>Login Page</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
+.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div style="padding: 0px;" class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+    </div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <!-- ################################################################################################ -->
+  </header>
+</div><!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main style="padding:50px" class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div  class="content">
+      <!-- ################################################################################################ -->
+      <h2 style="color: black;">請輸入會員資料</h2>
+
+
+      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div  style="" class="one_quarter first">帳號</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">
+          <input type="text" name='email' id="email" required="required" placeholder="請輸入帳號">
+        </div>
+      </div>
+
+      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div  style="" class="one_quarter first">密碼</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">
+          <input type="password" name='pwd' id="pwd" required="required" placeholder="請輸入密碼"></div>
+      </div>
+
+      <div style="margin:auto;text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+        <div  name="verify_code" id="verify_code" class="one_quarter first">驗證碼</div>
+        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter"><input required="required" placeholder="請輸入驗證碼(區分大小寫)"></div>
+      </div>
+
+      <div style="margin-bottom:0px;" class="group btmspace-50 demo">
+        <div style="background-color:white;" class="one_quarter first"></div>
+        <div style="background-color:white;margin:auto;" class="three_quarter">
+          <div  style="width:200px;background:#FFFFFF;margin-left:20px;" class="input_block">
+                      <canvas  id='auth-code'></canvas>
+                      <button id='reBtn' style="color:#337ab7;background-color:white; margin-bottom:20px; height:36 px;width:95 px;font-size:16px;text-align:center;">換圖</button>
+                      <span id=result style="color:red"></span>
+                  <button style="margin-top:10px;color:white;background-color:#337ab7; height:36px;width:95px;font-size:16px;text-align:center;" id="submit" type="button" >登入</button>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+        <div id="validText" style="margin:auto;color: #0066CC;background: #FFFFFF;" class="three_quarter">
+               </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<!-- 表單傳送資料 -->
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script language="javascript" type="text/javascript">
+    $("#submit").click(function(e){
+        var formData = new FormData();
+        formData.append('email', $("#email").val());
+        formData.append('pwd', $("#pwd").val());
+
+        $.ajax({
+            type: "POST",
+            url: $SCRIPT_ROOT + "/login2",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+                if (data.login) {
+                    alert("Hello")
+                    location.reload()
+                } else {
+                    alert("Wrong");
+                    // location.href = $SCRIPT_ROOT + "/login2"
+                    location.reload()
+                }
+
+            },
+            error: () => {
+                alert("Error")
+            }
+        });
+    });
+</script>
+<!--驗證碼-->
+<script>
+        // this is the id of the form
+        $("#idForm").submit(function(e) {
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                   type: "POST",
+                   url: url,
+                   data: form.serialize(), // serializes the form's elements.
+                   success: function(data)
+                   {
+                       alert(data); // show response from the php script.
+                       console.log(data);
+                   }
+                 });
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+
+       </script>
+<script>$(function() {
+ let options = {
+    canvasId: "auth-code",/**canvas的id*/
+    txt: (randomNum(100000, 999999)).toString(),/**傳入驗證碼內容*/
+    height: 50,/**驗證碼高度 */
+    width: 200,/**驗證碼寬度 */
+    fontColor1: 0,/**隨機生成字型顏色*/
+    fontColor2: 50,/**隨機生成字型顏色*/
+    bgColor1: 180,/**這個範圍的顏色作背景看起來清晰一些*/
+    bgColor2: 255,/**這個範圍的顏色作背景看起來清晰一些*/
+    fontStyle: "24px SimHei"
+};
+
+// 點擊按鈕換圖
+var $btn = document.getElementById("reBtn");
+$btn.addEventListener('click', () => {
+    options.txt = (randomNum(100000, 999999)).toString();
+    helper = new writeAuthCode(options);
+    document.getElementById('result').innerHTML = "";
+    document.getElementById('validText').value = "";
+});
+
+// 輸入驗證文字
+var $text = document.getElementById('validText');
+var isValid = false;
+$text.addEventListener('keyup', function () {
+    if (helper.validate($text.value)) {
+        document.getElementById('verify_code').innerHTML = "驗證碼<span>*</span>";
+        $("#verify_code").css("color", "#393939")
+        isValid = true;
+        console.log('驗證碼輸入正確')
+    }
+    else {
+        document.getElementById('verify_code').innerHTML = "驗證碼錯誤";
+        $("#verify_code").css("color", "#FF435E")
+        isValid = false;
+    }
+});
+
+// --------------------------------------------------
+/**驗證碼建構函式**/
+function writeAuthCode(options) {
+    this.options = options;
+    let canvas = document.getElementById(options.canvasId);
+    canvas.width = options.width || 300
+    canvas.height = options.height || 150
+    let ctx = canvas.getContext('2d');/**建立一個canvas物件*/
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = randomColor(options.bgColor1, options.bgColor2);
+    ctx.fillRect(0, 0, options.width, options.height);
+    for (let i = 0; i < options.txt.length; i++) {
+        let txt = options.txt.charAt(i);/**讓每個字不一樣*/
+        ctx.font = options.fontStyle;
+        ctx.fillStyle = randomColor(options.fontColor1, options.fontColor2);
+        ctx.shadowOffsetY = randomNum(-3, 3);
+        ctx.shadowBlur = randomNum(-3, 3);
+        ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
+        let x = options.width / (options.txt.length + 1) * (i + 1);
+        let y = options.height / 2;
+        let deg = randomNum(-30, 30);
+        /**設定旋轉角度和座標原點*/
+        ctx.translate(x, y);
+        ctx.rotate(deg * Math.PI / 180);
+        ctx.fillText(txt, 0, 0);
+        /**恢復旋轉角度和座標原點*/
+        ctx.rotate(-deg * Math.PI / 180);
+        ctx.translate(-x, -y);
+    }
+    /**1~4條隨機干擾線隨機出現*/
+    for (let i = 0; i < randomNum(1, 4); i++) {
+        ctx.strokeStyle = randomColor(40, 180);
+        ctx.beginPath();
+        ctx.moveTo(randomNum(0, options.width), randomNum(0, options.height));
+        ctx.lineTo(randomNum(0, options.width), randomNum(0, options.height));
+        ctx.stroke();
+    }
+    /**繪製干擾點*/
+    for (let i = 0; i < options.width / 6; i++) {
+        ctx.fillStyle = randomColor(0, 255);
+        ctx.beginPath();
+        ctx.arc(randomNum(0, options.width), randomNum(0, options.height), 1, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+    this.validate = function (code) {
+        return this.options.txt == code;
+    }
+
+};
+/**隨機數字**/
+function randomNum(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+/**隨機顏色**/
+function randomColor(min, max) {
+    let r = randomNum(min, max);
+    let g = randomNum(min, max);
+    let b = randomNum(min, max);
+    return "rgb(" + r + "," + g + "," + b + ")";
+}
+
+var helper = new writeAuthCode(options);
+})
+    </script>
+</body>
+</html>
+
+
+
