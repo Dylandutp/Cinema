@@ -7,7 +7,7 @@
     <!-- jquery 連結 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- jquery ui 連結 -->
-    <script src = "../static/jquery1.js"></script>
+    <script src = "../static/js/jquery1.js"></script>
 </head>
 <body>
 <!--<form action="#">-->
@@ -40,19 +40,6 @@
     <button class = 'theater_01' id = 'theater_choose_01'  onclick = 'theater_01();'>台北信義威秀影城</button>
     <button class = 'theater_02' id = 'theater_choose_02' onclick = 'theater_02();'>台北京站威秀影城</button>
     <button class = 'theater_03' id = 'theater_choose_03' onclick = 'theater_03();'>板橋大遠百威秀影城</button>
-    <button class = 'theater_04' id = 'theater_choose_04'  onclick = 'theater_04();'>中和環球威秀影城</button>
-    <button class = 'theater_05' id = 'theater_choose_05'  onclick = 'theater_05();'>林口MITSUI OUTLET PARK威秀影城</button>
-    <button class = 'theater_06' id = 'theater_choose_06'  onclick = 'theater_06();'>桃園統領威秀影城</button>
-    <button class = 'theater_07' id = 'theater_choose_07'  onclick = 'theater_07();'>新竹大遠百威秀影城</button>
-    <button class = 'theater_08' id = 'theater_choose_08'  onclick = 'theater_08();'>新竹巨城威秀影城</button>
-    <button class = 'theater_09' id = 'theater_choose_09'  onclick = 'theater_09();'>頭份尚順威秀影城</button>
-    <button class = 'theater_10' id = 'theater_choose_10'  onclick = 'theater_10();'>台中大遠百威秀影城</button>
-    <button class = 'theater_11' id = 'theater_choose_11'  onclick = 'theater_11();'>台中TIGER CITY威秀影城</button>
-    <button class = 'theater_12' id = 'theater_choose_12'  onclick = 'theater_12();'>台中大魯閣新時代威秀影城</button>
-    <button class = 'theater_13' id = 'theater_choose_13'  onclick = 'theater_13();'>台南FOCUS 威秀影城</button>
-    <button class = 'theater_14' id = 'theater_choose_14'  onclick = 'theater_14();'>台南南紡威秀影城</button>
-    <button class = 'theater_15' id = 'theater_choose_15'  onclick = 'theater_15();'>高雄大遠百威秀影城</button>
-    <button class = 'theater_16' id = 'theater_choose_16'  onclick = 'theater_16();'>花蓮新天堂樂園威秀影城</button>
 <!--        <div id = 'theater_01'>-->
 <!--         <ul>-->
 <!--            <li>選取幼兒園第一優先條件</li>-->
@@ -123,12 +110,50 @@
       </div>
  </div>
 
+ <div class="button3">
+            <!-- 國小 -->
+        <div id = 'child2'>
+         <ul>
+            <li>選取國小第一優先條件</li>
+         </ul>
+            <div class = 'childbuttons'>
+                <button id = 'c1' onclick = 'c1();'>公立</button>
+                <button id = 'c2' onclick = 'c2();'style="width: 120px;height: 45px;">社團</button>
+                <button id = 'c3' onclick = 'c3();' style="width: 120px;height: 45px;">學校特色</button>
+            </div>
+         <ul>
+            <li>選取國小第二優先條件</li>
+         </ul>
+            <div class = 'childbuttons'>
+                <button id = 'c4' onclick = 'c4();'>公立</button>
+                <button id = 'c5' onclick = 'c5();'style="width: 120px;height: 45px;">社團</button>
+                <button id = 'c6' onclick = 'c6();' style="width: 120px;height: 45px;">學校特色</button>
+            </div>
+         <ul>
+            <li>選取國小第三優先條件</li>
+         </ul>
+            <div class = 'childbuttons'>
+                <button id = 'c7' onclick = 'c7();'>公立</button>
+                <button id = 'c8' onclick = 'c8();'style="width: 120px;height: 45px;">社團</button>
+                <button id = 'c9' onclick = 'c9();' style="width: 120px;height: 45px;">學校特色</button>
+            </div>
+        </div>
+ </div>
+
+
+
+
+
+
+
+
+
 
 
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.backtotop.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
 <script>
 
 document.getElementById('choice').onchange = function() {

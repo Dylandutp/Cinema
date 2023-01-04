@@ -1,214 +1,194 @@
 <!DOCTYPE html>
 
 <html lang="" xmlns="http://www.w3.org/1999/html">
+
 <head>
-<title>SignUp Page</title>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous"></script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<style type="text/css">
-/* DEMO ONLY */
-.container .demo{text-align:center;}
-.container .demo div{padding:8px 0;}
-.container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
-.container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
-@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
-/* DEMO ONLY */
-</style>
+  <title>SignUp Page</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../static/css/layout.css" rel="stylesheet" type="text/css" media="all">
+  <style type="text/css">
+    /* DEMO ONLY */
+    .container .demo {
+      text-align: center;
+    }
+
+    .container .demo div {
+      padding: 8px 0;
+    }
+
+    .container .demo div:nth-child(odd) {
+      color: #FFFFFF;
+      background: #CCCCCC;
+    }
+
+    .container .demo div:nth-child(even) {
+      color: #FFFFFF;
+      background: #979797;
+    }
+
+    @media screen and (max-width:900px) {
+      .container .demo div {
+        margin-bottom: 0;
+      }
+    }
+
+    /* DEMO ONLY */
+  </style>
 </head>
+
 <body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div style="padding: 0px;" class="wrapper row1">
-  <header id="header" class="hoc clear">
-    <!-- ################################################################################################ -->
-    <div id="logo" class="fl_left">
-      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
-    </div>
-    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
-    <!-- ################################################################################################ -->
-  </header>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row3">
-  <main style="padding:50px;" class="hoc container clear">
-    <!-- main body -->
-    <!-- ################################################################################################ -->
-    <div  class="content">
-
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div style="padding: 0px;" class="wrapper row1">
+    <header id="header" class="hoc clear">
       <!-- ################################################################################################ -->
-      <h2 style="color: #007bff;">填寫會員資料</h2>
-
-      <p>請先輸入您的身分證或居留證號碼</p>
-      <div style="text-align: center;margin-bottom:auto;" class="group btmspace-50 demo">
-        <div  style="color: #4d4d4d;background: #FFFFFF;padding: 8px 0;" class="one_quarter first">
-          <input type="text" name='id_code'id="id_code" required="required" maxlength="10" pattern="[A-Za-z]\d{9}" placeholder="A123456789">
-        </div>
-        <div style="text-align:left;color: #4d4d4d;background: #FFFFFF;padding: 8px 0;" class="three_quarter">
-          <button id="id_code_correct" style="color:white;background-color:#337ab7; margin-bottom:20px; height:36 px;width:95 px;font-size:16px;text-align:center;" type="button" >資料驗證</button>
-        </div>
+      <div id="logo" class="fl_left">
+        <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
       </div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+      <!-- ################################################################################################ -->
+    </header>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
 
-      <p>您的姓名</p>
-      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
-        <div  style="color: #4d4d4d;background: #FFFFFF;padding: 8px 0;" class="one_quarter first">
-          <input type="text" name='first_name' id="first_name" required="required" placeholder="姓">
-        </div>
-        <div style="color: #4d4d4d;background: #FFFFFF;padding: 8px 0;" class="three_quarter">
-          <input type="text" name='last_name' id="last_name" required="required" placeholder="名">
-        </div>
-      </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row3">
+    <main class="hoc container clear">
+      <!-- main body -->
+      <!-- ################################################################################################ -->
+      <div class="content">
 
-      <p>西元出生日期</p>
-      <div style="margin-bottom:20px;" class="group btmspace-50 demo">
-            <div style="background: #FFFFFF;" class="one_quarter first">
-                <input style="color: #999999;" class='notice' required="required" min="1900-01-01" max="2023-01-12" type="date"  id="birth_date" name="birth_date">
-            </div>
-      </div>
+        <!-- ################################################################################################ -->
+        <h2 style="color: #007bff;">填寫會員資料</h2>
 
-      <p>手機號碼</p>
-      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
-        <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_quarter first"><input type="text" name='phone_num' id="phone_num"  required="required" maxlength="10" pattern="09\d{8}" placeholder="0900000000"></div>
-        <div style="color: #4d4d4d;background: #FFFFFF;" class="three_quarter"><input type="text" name='phone_num_correct'  required="required" maxlength="10" pattern="09\d{8}" placeholder="請再輸入一次手機號碼" ></div>
-
-      </div>
-
-      <p>帳號信箱</p>
-      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
-        <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_quarter first"><input type="text" name='email' id="email" required placeholder="address@mail.com"></div>
-        <div style="color: #4d4d4d;background: #FFFFFF;" class="three_quarter"><input type="text" name='email_correct' id="email_correct"  required placeholder="請再輸入一次帳號信箱" ></div>
-
-      </div>
-
-      <p>帳號密碼</p>
-      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
-        <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_quarter first"><input type="password" name='pwd' id="pwd" required placeholder="請設定帳號密碼"  ></div>
-        <div style="color: #4d4d4d;background: #FFFFFF;" class="three_quarter">
-          <input type="password" name='pwd_correct' id="pwd_correct"  required="required" placeholder="請再輸入一次密碼"  ></div>
-      </div>
-
-      <button style="color:white;background-color:#337ab7; margin-bottom:20px; height:36 px;width:95 px;font-size:16px;text-align:center;" id="submit" type="submit" onblur="input_check()">登入</button>
-
-
+        <p>請先輸入您的身分證或居留證號碼</p>
+        <div style="text-align: center;margin-bottom:auto;" class="group btmspace-50 demo">
+          <div style="color: #4d4d4d;background: #FFFFFF;padding: 8px 0;" class="one_quarter first">
+            <input type="text" name='id_code' id="id_code" required placeholder="A000000000">
+          </div>
+          <div style="color: #4d4d4d;background: #FFFFFF;padding: 8px 0;" class="three_quarter">
+            <button id="id_code_correct"
+              style="color:white;background-color:#337ab7; margin-bottom:20px; height:36 px;width:95 px;font-size:16px;text-align:center;"
+              type="button">資料驗證</button>
+          </div>
         </div>
 
+        <p>您的姓名</p>
+        <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+          <div style="color: #4d4d4d;background: #FFFFFF;padding: 8px 0;" class="one_quarter first">
+            <input type="text" name='last_name' id="last_name" required placeholder="姓">
+          </div>
+          <div style="color: #4d4d4d;background: #FFFFFF;padding: 8px 0;" class="three_quarter">
+            <input type="text" name='first_name' id="first_name" required placeholder="名">
+          </div>
+        </div>
+
+        <p>西元出生日期</p>
+        <div style="margin-bottom:20px;" class="group btmspace-50 demo">
+          <div style="background: #FFFFFF;" class="one_quarter first">
+            <input style="color: #999999;" class='notice' required type="date" id="birth_date" name="birth_date">
+          </div>
+        </div>
+
+        <p>手機號碼</p>
+        <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+          <div style="color: #4d4d4d;background: #FFFFFF;" class="one_quarter first"><input type="text" name='phone_num'
+              id="phone_num" name='phone_num' required placeholder="0900000000"></div>
+          <div style="color: #4d4d4d;background: #FFFFFF;" class="three_quarter"><input type="text"
+              name='phone_num_correct' name='phone_num_correct' required placeholder="請再輸入一次手機號碼"></div>
+
+        </div>
+
+        <p>帳號信箱</p>
+        <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+          <div style="color: #4d4d4d;background: #FFFFFF;" class="one_quarter first"><input type="text" name='email'
+              id="email" required placeholder="0900000000"></div>
+          <div style="color: #4d4d4d;background: #FFFFFF;" class="three_quarter"><input type="text" name='email_correct'
+              id="email_correct" required placeholder="請再輸入一次帳號信箱"></div>
+
+        </div>
+
+        <p>帳號密碼</p>
+        <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+          <div style="color: #4d4d4d;background: #FFFFFF;" class="one_quarter first"><input type="password" name='pwd'
+              id="pwd" required placeholder="請設定帳號密碼"></div>
+          <div style="color: #4d4d4d;background: #FFFFFF;" class="three_quarter"><input type="password"
+              name='pwd_correct' id="pwd_correct" required placeholder="請再輸入一次密碼"></div>
+
+        </div>
+
+        <button
+          style="color:white;background-color:#337ab7; margin-bottom:20px; height:36 px;width:95 px;font-size:16px;text-align:center;"
+          id="submit" type="button">登入</button>
 
 
-<!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-<script>
-<!--檢查重複-->
-  function input_check(){
-      var n1 = document.getElementById("phone_num");
-      var n2 = document.getElementById("phone_num_correct");
-      var e1 = document.getElementById("email");
-      var e2 = document.getElementById("email_correct");
-      var p1 = document.getElementById("pwd");
-      var p2 = document.getElementById("pwd_correct");
+      </div>
 
 
-      if(n1.value !=  n2.value && e1.value !=  e2.value && p1.value !=  p2.value){
-      alert("兩次電話號碼、帳號信箱與密碼皆輸入不同，請重新輸入");
-          n2.value="";
-          e2.value="";
-          p2.value="";
-      }
-      else if(n1.value !=  n2.value && e1.value !=  e2.value){
-      alert("兩次電話號碼與帳號信箱輸入不同，請重新輸入");
-          n2.value="";
-          e2.value="";
-      }
-      else if(e1.value !=  e2.value && p1.value !=  p2.value){
-      alert("兩次帳號信箱與密碼輸入不同，請重新輸入");
-          e2.value="";
-          p2.value="";
-      }
-      else if(p1.value !=  p2.value){
-      alert("兩次電話號碼與密碼輸入不同，請重新輸入");
-          p2.value="";
-          n2.value="";
-      }
-      else if(n1.value !=  n2.value){
-      alert("兩次電話號碼輸入不同，請重新輸入");
-          n2.value="";
-      }
-      else if(e1.value !=  e2.value){
-      alert("兩次帳號信箱輸入不同，請重新輸入");
-          e2.value="";
-      }
-      else if(p1.value !=  p2.value){
-      alert("兩次密碼輸入不同，請重新輸入");
-          p2.value="";
-      };
-  };
-</script>
-<script language="javascript">
-    <!-- 出生日期 -->
-    var myDate = new Date;
-    var year = myDate.getFullYear(); //获取当前年
-    var mon = myDate.getMonth()+1 < 10 ? "0"+(myDate.getMonth()+1) : (myDate.getMonth()+1);//
-    var dat = myDate.getDate() < 10 ? "0"+myDate.getDate() : myDate.getDate();
-    $("#birth_date").attr("max",year+"-"+mon+"-"+dat);
 
+      <!-- JAVASCRIPTS -->
+      <script src="../static/js/jquery.min.js"></script>
+      <script src="../static/js/jquery.backtotop.js"></script>
+      <script src="../static/js/jquery.mobilemenu.js"></script>
+      <!-- 出生日期 -->
+      <script language="javascript">
+        var myDate = new Date;
+        var year = myDate.getFullYear(); //获取当前年
+        var mon = myDate.getMonth() + 1 < 10 ? "0" + (myDate.getMonth() + 1) : (myDate.getMonth() + 1);//
+        var dat = myDate.getDate() < 10 ? "0" + myDate.getDate() : myDate.getDate();
+        $("#birth_date").attr("max", year + "-" + mon + "-" + dat);
 
-</script>
-    <!-- 資料傳送 -->
-<script type=text/javascript>
+        <!-- 資料傳送 -->
+      </script>
+      <script type=text/javascript>
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 
-<script language="javascript" type="text/javascript">
-    $("#submit").click(function(e){
-        var formData = new FormData();
-        formData.append('id_code', $("#id_code").val());
-        formData.append('email', $("#email").val());
-        formData.append('pwd', $("#pwd").val());
-        formData.append('first_name', $("#first_name").val());
-        formData.append('last_name', $("#last_name").val());
-        formData.append('birth_date', $("#birth_date").val());
-        formData.append('phone_num', $("#phone_num").val());
+      <script language="javascript" type="text/javascript">
+        $("#submit").click(function (e) {
+          var formData = new FormData();
+          formData.append('id_code', $("#id_code").val());
+          formData.append('email', $("#email").val());
+          formData.append('pwd', $("#pwd").val());
+          formData.append('name', $("#last_name").val() + $("#first_name").val());
+          formData.append('birth_date', $("#birth_date").val());
+          formData.append('phone_num', $("#phone_num").val());
 
 
-        $.ajax({
+          $.ajax({
             type: "POST",
-            url: $SCRIPT_ROOT + "/signup",
+            url: $SCRIPT_ROOT + "/register",
             dataType: "json",
             data: formData,
             contentType: false,
             processData: false,
             success: (data) => {
-                if (data.login) {
-                    alert("Hello")
-                    location.reload()
-                } else {
-                    alert("Wrong");
-                    // location.href = $SCRIPT_ROOT + "/signup"
-                    location.reload()
-                }
-
+              if (data.exist) {
+                alert("User exist")
+                location.href = $SCRIPT_ROOT + "/login"
+              } else {
+                alert("Success");
+                location.href = $SCRIPT_ROOT + "/login"
+              }
             },
             error: () => {
-                alert("Error")
+              alert("Error")
             }
+          });
         });
-    });
-
-
-</script>
+      </script>
 
 </body>
+
 </html>

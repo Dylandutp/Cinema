@@ -7,24 +7,10 @@
     <!-- jquery 連結 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- jquery ui 連結 -->
-    <script src = "../static/jquery1.js"></script>
-
-
-
+    <script src = "../static/js/jquery1.js"></script>
 </head>
 <body>
 
-<div>
-<select id="selector">
-  <option value="None">請點此選擇內容</option>
-  <option value="value_A">架站盒子</option>
-  <option value="value_B">kumo.tw</option>
-</select>
-  <p>
-  即時顯示文字：<span id="es"></span><br>
-  即時顯示Ｖ值：<span id="esv"></span>
-  </p>
-</div>
 
 <!--        <p>2.年段：(至少一項)</p>-->
 <!-- <div class="button2">-->
@@ -106,19 +92,9 @@
       <button style="color:white;background-color:#337ab7; margin-bottom:20px; height:36 px;width:95 px;font-size:16px;text-align:center;" id="submit" type="submit" onblur="phonenum_check()">登入</button>
 
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-<script>
-
-$("#selector").on("change", function() {
-  $("#selector option:selected").each(function () {
-    $("#es").html($(this).html());
-    $("#esv").html($(this).val());
-  });
-});
-
-</script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.backtotop.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
 <script>
 <!--檢查重複-->
 function phonenum_check(){

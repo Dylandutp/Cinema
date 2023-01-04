@@ -12,7 +12,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <title>威秀影城</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="../static/css/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 
@@ -26,15 +26,92 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
   </header>
 </div>
-
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+  <!-- ################################################################################################ -->
   <div class="wrapper row2">
     <nav id="mainav" class="hoc clear">
-      <ul class="clear"></ul>
+      <!-- ################################################################################################ -->
+      <ul class="clear">
+
+          <li class="active">
+            <a class="drop" href="#">請選擇影城</a>
+
+
+              <ul>
+            <li class="active"><a href="gallery.html">台北信義威秀影城</a></li>
+            <li><a href="#">台北京站威秀影城</a></li>
+            <li><a href="#">板橋大遠百威秀影城</a></li>
+            <li><a href="#">台北京站威秀影城</a></li>
+            <li><a href="#">板橋大遠百威秀影城</a></li>
+            <li><a href="#">林口MITSUI OUTLET PARK威秀影城</a></li>
+            <li><a href="#">板橋大遠百威秀影城</a></li>
+            <li><a href="#">台北京站威秀影城</a></li>
+            <li><a href="#">板橋大遠百威秀影城</a></li>
+
+            <li><a href="sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="basic-grid.html">Basic Grid</a></li>
+            <li><a href="full-width.html">Full Width</a></li>
+            <li><a href="sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="basic-grid.html">Basic Grid</a></li>
+            <li><a href="full-width.html">Full Width</a></li>
+            <li><a href="sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="basic-grid.html">Basic Grid</a></li>
+          </ul>
+        </li>
+
+      </ul>
+      <!-- ################################################################################################ -->
     </nav>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+
+  <!-- ################################################################################################ -->
 </div>
 
 
 
+<div>
+<select id="selector">
+  <option value="None">請點此選擇內容</option>
+  <option value="01">台北信義威秀影城</option>
+  <option value="02">台北京站威秀影城</option>
+  <option value="03">板橋大遠百威秀影城</option>
+  <option value="04">中和環球威秀影城</option>
+  <option value="05">林口MITSUI OUTLET PARK威秀影城</option>
+  <option value="06">桃園統領威秀影城</option>
+  <option value="07">新竹大遠百威秀影城</option>
+  <option value="08">新竹巨城威秀影城</option>
+  <option value="09">頭份尚順威秀影城</option>
+  <option value="10">台中大遠百威秀影城</option>
+  <option value="11">台中TIGER CITY威秀影城</option>
+  <option value="12">台中大魯閣新時代威秀影城</option>
+  <option value="13">台南大遠百威秀影城</option>
+  <option value="14">台南FOCUS 威秀影城</option>
+  <option value="15">台南南紡威秀影城</option>
+  <option value="16">高雄大遠百威秀影城</option>
+  <option value="17">花蓮新天堂樂園威秀影城</option>
+</select>
+  <p>
+  即時顯示文字：<span style="color:white;" id="es"></span><br>
+  即時顯示Ｖ值：<span id="esv"></span>
+  </p>
+</div>
+
+
+
+
+
+
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
 <div class="wrapper row3">
   <main class="hoc container clear">
     <!-- main body -->
@@ -241,9 +318,9 @@ selmovie(); //先執行一次選擇電影來抓到日期和場次的資料
 <!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.backtotop.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
 
 <script>
           $("#active").on("change", function() {

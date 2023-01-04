@@ -1,119 +1,113 @@
 <!DOCTYPE html>
 
 <html lang="">
+
 <head>
-<title>Login Page</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-          crossorigin="anonymous"></script>
-<style type="text/css">
+  <title>Login Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../static/css/layout.css" rel="stylesheet" type="text/css" media="all">
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <style type="text/css">
 
-</style>
+  </style>
 </head>
+
 <body id="top">
-<div style="padding: 0px;" class="wrapper row1">
-  <header id="header" class="hoc clear">
-    <!-- ################################################################################################ -->
-    <div id="logo" class="fl_left">
-      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
-    </div>
-    <!-- ################################################################################################ -->
-  </header>
-</div>
-
-<div class="wrapper row3">
-  <main style="padding:50px 0" class="hoc container clear">
-    <!-- main body -->
-    <!-- ################################################################################################ -->
-    <div   class="content">
-
-      <h2 style="color: black;">會員服務登入</h2>
-      <div>
-        <a href="sign-up.html">
-        <p style="color:#337ab7" onclick="">還不是會員嗎?現在就註冊!</p>
-        </a>
+  <div style="padding: 0px;" class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <!-- ################################################################################################ -->
+      <div id="logo" class="fl_left">
+        <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
       </div>
+      <!-- ################################################################################################ -->
+    </header>
+  </div>
 
-      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+  <div class="wrapper row3">
+    <main style="padding:50px 0" class="hoc container clear">
+      <!-- main body -->
+      <!-- ################################################################################################ -->
+      <div class="content">
 
-        <div  style="" class="one_quarter first">
-          <label>帳號</label>
+        <h2 style="color: black;">會員服務登入</h2>
+
+        <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+
+          <div style="" class="one_quarter first">
+            <label>帳號</label>
+          </div>
+          <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">
+            <input type="text" name='email' id="email" required placeholder="請輸入帳號">
+          </div>
         </div>
-        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">
-            <input type="text" name='email' id="email" required="required" placeholder="請輸入帳號">
+
+        <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
+          <div style="" class="one_quarter first">
+            <label>密碼</label>
+          </div>
+          <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">
+            <input type="password" name='pwd' id="pwd" required placeholder="請輸入密碼">
+          </div>
         </div>
+
+        <div>
+          <a href="{{ url_for("user_confirm") }}">
+            <p style="color:#337ab7" onclick="">忘記密碼</p>
+          </a>
+        </div>
+
       </div>
-
-      <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
-        <div  style="" class="one_quarter first">
-          <label>密碼</label>
-        </div>
-        <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">
-          <input type="password" name='pwd' id="pwd" required="required" placeholder="請輸入密碼">
-        </div>
-      </div>
-
-      <div>
-        <a href="password-change1.html">
-        <p style="color:#337ab7" onclick="">忘記密碼</p>
-        </a>
-      </div>
-
-
-       </div>
 
 
       <div>
-        <button style="color:white;background-color:#337ab7;margin:auto;  height:36 px;width:95 px;font-size:16px;text-align:center;" id="submit" type="button" >登入</button>
+        <button
+          style="color:white;background-color:#337ab7;margin:auto;  height:36 px;width:95 px;font-size:16px;text-align:center;"
+          id="submit" type="button">登入</button>
       </div>
 
-      <footer style="height:200px;background-color:white;" class="footer"></footer>
 
-
-
-<!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-<!-- 表單傳送資料 -->
-<script type=text/javascript>
+      <!-- JAVASCRIPTS -->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery.backtotop.js"></script>
+    <script src="../static/js/jquery.mobilemenu.js"></script>
+      <!-- 表單傳送資料 -->
+      <script type=text/javascript>
             $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-        </script>
-<script language="javascript" type="text/javascript">
-    $("#submit").click(function(e){
-        var formData = new FormData();
-        formData.append('email', $("#email").val());
-        formData.append('pwd', $("#pwd").val());
+</script>
+      <script language="javascript" type="text/javascript">
+        $("#submit").click(function (e) {
+          var formData = new FormData();
+          formData.append('email', $("#email").val());
+          formData.append('pwd', $("#pwd").val());
 
-        $.ajax({
+          $.ajax({
             type: "POST",
-            url: $SCRIPT_ROOT + "/login1",
+            url: $SCRIPT_ROOT + "/login",
             dataType: "json",
             data: formData,
             contentType: false,
             processData: false,
             success: (data) => {
-                if (data.login) {
-                    alert("Hello")
-                    location.reload()
-                } else {
-                    alert("Wrong");
-                    // location.href = $SCRIPT_ROOT + "/login1"
-                    location.reload()
-                }
+              if (data.login) {
+                alert("Hello")
+                location.reload()
+              } else {
+                alert("Wrong");
+                // location.href = $SCRIPT_ROOT + "/login1"
+                location.reload()
+              }
 
             },
             error: () => {
-                alert("Error")
+              alert("Error")
             }
+          });
         });
-    });
-</script>
+      </script>
 
 
 </body>
+
 </html>
-
-
