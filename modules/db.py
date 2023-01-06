@@ -54,9 +54,8 @@ def UpdateEmail(id, email):
         except:
             connection.rollback()
 
+
 # Update birthday
-
-
 def UpdateBirth(memberID, date):
     connection.ping(reconnect=True)
     with connection.cursor() as cursor:
@@ -100,7 +99,7 @@ def isExist(id, email):
 def isRepeat(id, email, password):
     connection.ping(reconnect=True)
     with connection.cursor() as cursor:
-        command = "SELECT password FROM member WHERE IDnumber = '%s' AND email='%s'"
+        command = "SELECT password FROM member WHERE IDnumber = '%s' AND email = '%s'"
         cursor.execute(command % (id, email))
         result = cursor.fetchone()
         if result[0] == password:
@@ -119,5 +118,45 @@ def getData(memberID):
         return result
 
 
+# Get theater information
+def getTheater():
+    connection.ping(reconnect=True)
+    result = []
+    with connection.cursor() as cursor:
+        command = "SELECT name FROM theaters"
+        cursor.execute(command)
+        result = []
+        for record in cursor:
+            result.append(record[0])
+        return result
+    
+# Get Showing information
+def getShowing(theater_id, movie_id):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "SELECT sessions.session_id, sessions.date, sessions.start_time FROM sessions WHERE theater_id = '%s' AND movie_id = '%s'"
+        cursor.execute(command % (theater_id, movie_id))
+        result = []
+        for record in cursor:
+            tmp = dict(id=record[0],
+                       date=str(record[1]),
+                       start_time=record[2])
+            result.append(tmp)
+        return result
+
+
+# Get movie information
+def getMovie(theater_id):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "SELECT movie.movie_id, movie.name, movie.image_link FROM movie NATURAL JOIN released_movie WHERE theater_id = '%s'"
+        cursor.execute(command % theater_id)
+        result = []
+        for record in cursor:
+            tmp = dict(id=record[0],
+                       name=record[1],
+                       img=record[2])
+            result.append(tmp)
+        return result
 # Login("dylandutp@gmail.com", "Dylan0313")
 # isExist('A130778745', 'dylandutp@gmail.com')

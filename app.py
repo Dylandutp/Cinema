@@ -8,11 +8,46 @@ app = Flask(__name__)
 app.secret_key = "#fdjklas2323jgfdaiombjkasdfjwoeruffcfxadkl"
 
 
+
 @app.route("/")
-def hello():
-    return "Hello, World!"
+def main_page():
+    if request.method == "POST":
+        data = request.get_json()
+        session_id = data.get('session_id', None)
+        
+    else:
+        return render_template('front-page.html')
     
     
+# Get theater
+@app.route("/theater")
+def get_theater():
+    theater = DB.getTheater()
+    # movie = DB.getMovieInfo()
+    # data = [theater, movie] 
+    return jsonify(theater)
+
+
+# Get Movie
+@app.route("/movie", methods=["POST", "GET"])
+def get_movie():
+    if request.method == "POST":
+        data = request.get_json()
+        theater_id = data.get('theater_id', None)
+        movie = DB.getMovie(theater_id)
+        return jsonify(movie)
+
+
+# Get Showing
+@app.route("/showing", methods=["POST", "GET"])
+def get_showing():
+    if request.method == "POST":
+        data = request.get_json()
+        movie_id = data.get('movie_id', None)
+        theater_id = data.get('theater_id', None)
+        showing = DB.getShowing(theater_id, movie_id)
+        return jsonify(showing)
+
 
 # Login Page
 @app.route("/login", methods=["POST", "GET"])

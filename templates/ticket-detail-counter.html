@@ -21,9 +21,9 @@
   <header id="header" class="hoc clear">
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
-      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+      <h1 style="color:#ffffff"><a href="{{ url_for('main_page') }}">VIESHOW</a></h1>
     </div>
-    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('user') }}">會員服務專區</a></div>
     <!-- ################################################################################################ -->
   </header>
 </div>
@@ -105,9 +105,8 @@
     var mon = myDate.getMonth()+1 < 10 ? "0"+(myDate.getMonth()+1) : (myDate.getMonth()+1);//
     var dat = myDate.getDate() < 10 ? "0"+myDate.getDate() : myDate.getDate();
     $("#birth_date").attr("max",year+"-"+mon+"-"+dat);
-
-<!-- 資料傳送 -->
 </script>
+<!-- 資料傳送 -->
 <script type=text/javascript>
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
