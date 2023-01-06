@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="" xmlns="http://www.w3.org/1999/html" style="background-color: white;">
+<head>
+<title>Movie Search Page</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../static/css/layout.css" rel="stylesheet" type="text/css" media="all">
+<style type="text/css">
+    p{
+        text-align: left;
+    }
+    .movie_name{
+        font-size: 27px;
+    }
+    .en_movie_name{
+        width: 7cm; 
+        font-size: 18px;
+    }
+    .info{
+        position: absolute;
+        left: 300px;
+        top: 200px;
+        display: inline;
+        float: left;
+
+    }
+    .intro{
+        position: absolute;
+        top: 450px;
+    }
+   .movie_choose{
+        position: absolute;
+        left: 700px;
+        /* top: 450px; */
+   }
+</style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div style="padding: 0px;" class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+    </div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="search_movie.html">電影介紹</a></div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">影城介紹</a></div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+
+<div class="wrapper row3">
+  <main style="padding:50px;" class="hoc container clear">
+    <div class="theater_intro"></div>
+
+
+<!--四部電影-->
+    <div class="wrapper row3">
+      <main style="padding:50px 0;text-align:center;" class="hoc container clear">
+        <div style="margin-bottom:20px;" class="movie_table">
+              <div class="nospace_clear">
+                <div class="one_quarter first">
+                    <div >
+                    <div style="margin-bottom:50px;" class="movie_choose" id="theater">
+                    <select v-model="selected" name="" id="movie" @change="getMovie(selected)" >
+                        <option value="" selected disabled>請選擇電影</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                    </select>
+                    </div>
+
+                    <p class = "movie_name">阿凡達：水之道</p>
+                    <p class = "en_movie_name">VATAR THE WAY OF WATER</p>
+                    <img name="movie_poster" src="https://www.vscinemas.com.tw/vsweb/upload/film/film_20221121003.jpg"  alt="">
+                    </div>
+                    <!-- <p class="ch_movie_name">阿凡達：水之道</p>
+                    <p class="en_movie_name">VATAR THE WAY OF WATER</p>
+                    <p class="release_date">上映日期: 2023-2-22</p> -->
+                <div class="info">
+                    <p >上映日期: 2023-2-22</p>
+                    <p >導演: 詹姆斯卡麥隆</p>
+                    <p >演員: 山姆沃辛頓、柔伊莎達娜、凱特溫絲蕾、雪歌妮薇佛、楊紫瓊、傑梅奈克萊門特</p>
+                    <p >類型: 奇幻/科幻、冒險、劇情</p>
+                    <p >片長: 3 時 12 分</p>
+                </div>
+                <div class="intro">
+                    <p >電影介紹：</p>
+                    <p >《阿凡達：水之道》設於首集超過十年後，成為納美人並與奈蒂莉共結連理的傑克，在潘朵拉星上與他們的孩子組成蘇里一家，過著與世無爭的幸福生活，未料威脅再度降臨，他們不遺餘力保護彼此，為了生存再度奮戰，還得承受隨之而來的悲痛創傷。</p>
+                </div>
+                   
+              </div>
+              </div>
+        </div>
+      </main>
+    </div>
+
+
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    let quarter = document.getElementById('quarter');
+    quarter.addEventListener('mouseover', function() {
+      this.style.backgroundColor = 'blue';
+    })
+  })
+</script>
+
+<!-- jquery 連結 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- jquery ui 連結 -->
+<script src = "../static/jquery2.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
