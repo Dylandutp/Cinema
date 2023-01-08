@@ -31,6 +31,82 @@ def Insert(id, name, email, password, phone, birthday):
             connection.rollback()
 
 
+# Insert order
+def InsertOrder(member_id, session_id, ticket, seats, foods):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "INSERT INTO orders(member_id, session_id) VALUES(%s, %s)"
+        try:
+            cursor.execute(command, (member_id, session_id))
+            connection.commit()
+        except:
+            connection.rollback()
+    
+    with connection.cursor() as cursor:
+        command = "SELECT order_id FROM orders WHERE member_id = '%s' AND session_id = '%s'"
+        cursor.execute(command % (member_id, session_id))
+        for record in cursor:
+            order_id = record[0]
+    
+    with connection.cursor() as cursor:
+        command = "INSERT INTO ticket_order(order_id, regular, concession, elder) VALUES(%s, %s, %s, %s)"
+        try:
+            cursor.execute(command, (order_id, ticket[0], ticket[1], ticket[2]))
+            connection.commit()
+        except:
+            connection.rollback()
+
+    seat = []
+    with connection.cursor() as cursor:
+        for item in seats:
+            row = item.get('x')
+            col = item.get('y')
+            command = "SELECT seat_id FROM seat WHERE seat.row = %s AND seat.col = %s"
+            cursor.execute(command % (row, col))
+            for record in cursor:
+                seat.append(record[0])
+    with connection.cursor() as cursor:
+        for item in seat:
+            command = "INSERT INTO seat_order(order_id, seat_id, session_id) VALUES(%s, %s, %s)"
+            try:
+                cursor.execute(command, (order_id, item, session_id))
+                connection.commit()
+            except:
+                connection.rollback()
+    with connection.cursor() as cursor:
+        for i in range(3):
+            if foods[0][i] != 0:
+                command = "INSERT INTO food_order(order_id, food_id, number) VALUES(%s, %s, %s)"
+                try:
+                    cursor.execute(command, (order_id, i + 1, foods[0][i])) 
+                    connection.commit()
+                except:
+                    connection.rollback()
+    with connection.cursor() as cursor:
+        if foods[1] != 0:
+            try:
+                cursor.execute(command, (order_id, 4, foods[1])) 
+                connection.commit()
+            except:
+                connection.rollback()
+    with connection.cursor() as cursor:
+        if foods[2] != 0:
+            try:
+                cursor.execute(command, (order_id, 5, foods[2])) 
+                connection.commit()
+            except:
+                connection.rollback()
+    with connection.cursor() as cursor:
+        for i in range(3):
+            if foods[3][i] != 0:
+                try:
+                    cursor.execute(command, (order_id, i + 6, foods[3][i])) 
+                    connection.commit()
+                except:
+                    connection.rollback()
+    return order_id
+
+
 # Update password
 def UpdatePassword(id, email, password):
     connection.ping(reconnect=True)
@@ -158,5 +234,36 @@ def getMovie(theater_id):
                        img=record[2])
             result.append(tmp)
         return result
+
+
+# Get order information
+def getOrderInfo(order_id):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "SELECT theaters.name, movie.name, sessions.date, sessions.start_time, member.name, member.email FROM `orders` NATURAL JOIN sessions INNER JOIN theaters USING (theater_id) INNER JOIN movie USING (movie_id) INNER JOIN member USING (member_id) WHERE order_id = '%s'"
+        cursor.execute(command % order_id)
+        for record in cursor:
+            result = dict(theater_name = record[0],
+                       movie_name = record[1],
+                       date = str(record[2]),
+                       time = record[3],
+                       member_name = record[4],
+                       email = record[5])
+        return result 
+
+
+# Get selled seat
+def getSellSeat(session_id):
+    connection.ping(reconnect=True)
+    with connection.cursor() as cursor:
+        command = "SELECT seat.row, seat.col FROM seat_order NATURAL JOIN seat WHERE session_id = %s"
+        cursor.execute(command % session_id)
+        result = []
+        for record in cursor:
+            tmp = dict(row = record[0],
+                       col = record[1])
+            result.append(tmp)
+        return result 
+    
 # Login("dylandutp@gmail.com", "Dylan0313")
 # isExist('A130778745', 'dylandutp@gmail.com')

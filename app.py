@@ -14,7 +14,9 @@ def main_page():
     if request.method == "POST":
         data = request.get_json()
         session_id = data.get('session_id', None)
-        
+        session["session_id"] = session_id
+
+
     else:
         return render_template('front-page.html')
     
@@ -23,8 +25,6 @@ def main_page():
 @app.route("/theater")
 def get_theater():
     theater = DB.getTheater()
-    # movie = DB.getMovieInfo()
-    # data = [theater, movie] 
     return jsonify(theater)
 
 
@@ -49,6 +49,91 @@ def get_showing():
         return jsonify(showing)
 
 
+# Get Order Information
+@app.route("/order_information", methods=["POST", "GET"])
+def get_order_information():
+    if request.method == "POST":
+        session.pop("payment", None)
+        session.pop("ticket", None)
+        session.pop("food", None)
+        session.pop("num_ticket", None)
+        session.pop("total", None)
+        session.pop("session_id", None)
+        session.pop("order_id", None)
+        session.pop("num_ticket", None)
+        session.pop("seat", None)
+        return jsonify({'success': True})
+    else:
+        order_id = session["order_id"]
+        data = DB.getOrderInfo(order_id)
+        data['num_ticket'] = session['num_ticket']
+        return jsonify(data)
+
+
+# Get ticket number
+@app.route("/ticket_number")
+def get_ticket_number():
+    return jsonify(session['num_ticket'])
+
+
+# Get selled seat
+@app.route("/get_sell_seat")
+def get_sell_seat():
+    seat = DB.getSellSeat(session["session_id"])
+    data = {'seat': seat, 'ticket': session['num_ticket']}
+    return jsonify(data)
+
+
+# Choose Payment
+@app.route("/payment/<session_id>", methods=["POST", "GET"])
+def payment(session_id):
+    if request.method == "POST":
+        data = request.get_json()
+        session["payment"] = data.get('payment')
+        session["ticket"] = data.get('ticket', None)
+        session["food"] = [data.get('cola'), data.get('hotdog'), data.get('churros'), data.get('popcorn')]
+        session["num_ticket"] = data.get('num_ticket')
+        session["total"] = data.get('total')
+        session["session_id"] = session_id
+        return jsonify({'success': True})
+    else:
+        return render_template('payment.html', session_id = session_id)
+
+
+# Choose Seat
+@app.route("/choose_seat", methods=["POST", "GET"])
+def seat():
+    if request.method == "POST":
+        data = request.get_json()
+        session["seat"] = data.get('seat')
+        
+        if not "user" in session:
+            return jsonify({'login': False})
+        else:
+            order_id = DB.InsertOrder(session["user"], session["session_id"], session["ticket"], session["seat"], session["food"])
+            session["order_id"] = order_id
+            return jsonify({'login': True, 'payment': session["payment"]})
+        pass
+    else:
+        return render_template('seat.html')
+
+
+# Display detail (counter)
+@app.route("/ticket_detail_counter")
+def ticket_detail_counter():
+    return render_template('ticket-detail-counter.html')
+
+
+# Display detail (credit)
+@app.route("/ticket_detail_credit", methods=["POST", "GET"])
+def ticket_detail_credit():
+    if request.method == "POST":
+        data = request.get_json()
+        return jsonify({'success': True})
+    else:
+        return render_template('ticket-detail-creditcard.html')
+
+
 # Login Page
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -59,7 +144,12 @@ def login():
         if not memberID:
             return jsonify({'login': False})
         session["user"] = memberID
-        return jsonify({'login': True})
+        if "payment" in session:
+            order_id = DB.InsertOrder(session["user"], session["session_id"], session["ticket"], session["seat"], session["food"])
+            session["order_id"] = order_id
+            return jsonify({'login': True, 'payment': session["payment"]})
+        else:
+            return jsonify({'login': True, 'payment': -1})
     else:
         if "user" in session:
             return redirect(url_for("user"))
@@ -171,6 +261,15 @@ def user():
 @app.route("/logout")
 def logout():
     session.pop("user", None)
+    session.pop("payment", None)
+    session.pop("ticket", None)
+    session.pop("food", None)
+    session.pop("num_ticket", None)
+    session.pop("total", None)
+    session.pop("session_id", None)
+    session.pop("order_id", None)
+    session.pop("num_ticket", None)
+    session.pop("seat", None)
     return redirect(url_for("login"))
 
 

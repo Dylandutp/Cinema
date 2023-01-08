@@ -25,23 +25,30 @@
   <header id="header" class="hoc clear">
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
-      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+      <h1 style="color:#ffffff"><a href="{{ url_for('main_page') }}">VIESHOW</a></h1>
     </div>
-    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('login') }}">會員服務登入</a></div>
     <!-- ################################################################################################ -->
   </header>
 </div>
 
+<div id="app">
 <div class="wrapper row3">
   <main style="padding:50px;" class="hoc container clear">
 
-    <div class="pay_method" style="text-align:center;" >
-      <button type="submit" name="credit_card" id="credit_card" value="credit_card" onclick="ticket();">信用卡</button ><br>
-      <button type="submit" name="counters" id="counters" value="counters" onclick="ticket();">臨櫃付款</button>
+    <div class="pay_method" style="text-align:center;">
+       <label class="select"><input v-model="payment" type="radio" value="0"><span class="color" style="color: black;">信用卡</span></label>
+      <label class="select"><input v-model="payment" type="radio" value="1"><span class="color" style="color: black;">臨櫃付款</span></label>
+      <br>
+      <!-- <button type="submit" name="credit_card" id="credit_card" value="credit_card" @click="choosePayment()">信用卡</button ><br>
+      <button type="submit" name="counters" id="counters" value="counters" @click="choosePayment()">臨櫃付款</button> -->
     </div>
 
-      <div class="ticket-type">
-      <div  style="margin-bottom:20px;" class="group btmspace-50 demo ticket">
+      <div v-show="payment" class="ticket-type">
+        <h3 v-if="payment === '0'" style="text-align: center;">信用卡</h3>
+        <h3 v-if="payment === '1'" style="text-align: center;">臨櫃付款</h3>
+      <span>{{ payment }}</span>
+      <div style="margin-bottom:20px;" class="group btmspace-50 demo ticket">
         <div style="color:black;margin-bottom:20px;" class="one_quarter first ">票種</div>
         <div style="margin-bottom:20px;" class="one_quarter">價格</div>
         <div style="margin-bottom:20px;color:black;" class="one_quarter">數量</div>
@@ -52,8 +59,8 @@
         <div style="color:black;" class="one_quarter first">全票</div>
         <div class="one_quarter">$250</div>
         <div class="one_quarter"  style="display:table;">
-          <select style="margin:auto;display: inline-block;color:black;" id="regular-ticket" name="regular-ticket">
-                <option value="">請選擇全票張數</option>
+          <select v-model="ticket[0]" style="margin:auto;display: inline-block;color:black;" id="regular-ticket" name="regular-ticket">
+                <option value="0">請選擇全票張數</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -64,15 +71,16 @@
                 <option value="8">8</option>
             </select>張
         </div>
-        <div class="one_quarter">$<span id="total_regular"></span></div>
+         {% raw %}
+        <div class="one_quarter">${{ ticket[0] * 250 }}<span id="total_regular"></span></div>
 <!--    </div>-->
 
 <!--    <div style="text-align:center;" class="ticket-type">-->
         <div style="color:black;" class="one_quarter first">半票</div>
         <div class="one_quarter">$190</div>
         <div class="one_quarter"  style="display:table;">
-          <select style="margin:auto;display:inline-block;color:black;" id="concession-ticket" name="concession-ticket">
-                <option value="">請選擇半票張數</option>
+          <select v-model="ticket[1]" style="margin:auto;display:inline-block;color:black;" id="concession-ticket" name="concession-ticket">
+                <option value="0">請選擇半票張數</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -83,44 +91,42 @@
                 <option value="8">8</option>
             </select>張
         </div>
-        <div class="one_quarter">$<span id="total_concession"></span></div>
+        <div class="one_quarter">${{ ticket[1] * 190 }}<span id="total_concession"></span></div>
 <!--    </div>-->
 
 <!--    <div style="text-align:center;" class="ticket-type">-->
         <div style="margin-bottom:20px;color:black;" class="one_quarter first">敬老票</div>
         <div style="margin-bottom:20px;" class="one_quarter">$150</div>
         <div class="one_quarter"  style="margin-bottom:20px;display:table;">
-          <select style="color:black;margin:auto;display: inline-block;" id="senior-ticket" name="senior-ticket">
-                <option value="">請選擇敬老票張數</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
+          <select v-model="ticket[2]" style="color:black;margin:auto;display: inline-block;" id="senior-ticket" name="senior-ticket">
+                <option value=0>請選擇敬老票張數</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
             </select>張
         </div>
-        <div style="margin-bottom:20px;" class="one_quarter">
-            $<span id="total_senior"></span>
-        </div>
+        <div style="margin-bottom:20px;" class="one_quarter">${{ ticket[2] * 150 }}<span id="total_senior"></span></div>
 <!--    </div>-->
 
 <!--    <div style="text-align:center;" class="ticket-type">-->
         <div class="one_quarter first" style="color:black;text-size:20px;font-weight:bold;">總共:</div>
         <div class="one_quarter" style="background-color:white;"></div>
         <div class="one_quarter" style="text-align:center;background-color:white;">
-            <span style="color:black;display:inline-block;" id="total_num"></span><p style="display: inline;color:black;">張</p>
+            <span style="color:black;display:inline-block;" id="total_num">{{ num_ticket }}</span><p style="display: inline;color:black;">張</p>
         </div>
         <div class="one_quarter" style="text-align:center;background-color:white;">
-            <span style="color:black;display:inline-block;" id="total_money"></span><p style="display: inline;color:black;">元</p>
+            <span style="color:black;display:inline-block;" id="total_money">{{ ticket[0] * 250 + ticket[1] * 190 + ticket[2] * 150 }}</span><p style="display: inline;color:black;">元</p>
         </div>
-      <button id="food_choose" onclick="food();">選擇餐飲</button>
+      <button id="food_choose" @click="chooseFood()">選擇餐飲</button>
     </div>
   </div>
 
-  <div class="food" style="text-align:center;">
+  <div v-show="showFood" class="food" style="text-align:center;">
 <!--      <div class="food_type" >-->
 <!--          <button onclick="drink();">飲料</button>-->
 <!--          <button onclick="snake();">熱食</button>-->
@@ -133,8 +139,8 @@
               <p>$60</p>
               <img src="https://sales.vscinemas.com.tw/CDN/media/entity/get/ItemGraphic/10004657" /><br>
 
-              <select style="color:black;margin:auto;display:inline-block;" id="large-cola" name="large-cola">
-                    <option value="">請選擇大可樂杯數</option>
+              <select v-model="num_cola[0]" style="color:black;margin:auto;display:inline-block;" id="large-cola" name="large-cola">
+                    <option value="0">請選擇大可樂杯數</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -150,8 +156,8 @@
           <p>中可樂</p>
           <p>$55</p>
           <img src="https://sales.vscinemas.com.tw/CDN/media/entity/get/ItemGraphic/10004658"/><br>
-          <select style="color:black;margin:auto;display: inline-block;" id="medium-cola" name="medium-cola">
-                <option value="">請選中可樂杯數</option>
+          <select v-model="num_cola[1]" style="color:black;margin:auto;display: inline-block;" id="medium-cola" name="medium-cola">
+                <option value="0">請選中可樂杯數</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -167,8 +173,8 @@
           <p>小可樂</p>
           <p>$50</p>
           <img src="https://sales.vscinemas.com.tw/CDN/media/entity/get/ItemGraphic/10004659" /><br>
-          <select style="color:black;margin:auto;display: inline-block;" id="small-cola" name="small-cola">
-                <option value="">請選擇小可樂杯數</option>
+          <select v-model="num_cola[2]" style="color:black;margin:auto;display: inline-block;" id="small-cola" name="small-cola">
+                <option value="0">請選擇小可樂杯數</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -187,8 +193,8 @@
               <p>熱狗</p>
               <p>$110</p>
               <img src="https://sales.vscinemas.com.tw/CDN/media/entity/get/ItemGraphic/10004660" /><br>
-              <select style="color:black;margin:auto;display: inline-block;" id="hotdog" name="hotdog">
-                    <option value="">請選擇熱狗數量</option>
+              <select v-model="num_hotdog" style="color:black;margin:auto;display: inline-block;" id="hotdog" name="hotdog">
+                    <option value="0">請選擇熱狗數量</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -204,8 +210,8 @@
               <p>吉拿棒</p>
               <p>$110</p>
               <img src="https://sales.vscinemas.com.tw/CDN/media/entity/get/ItemGraphic/10004661" /><br>
-              <select style="color:black;margin:auto;display: inline-block;" id="churros" name="churros">
-                    <option value="">請選擇吉拿棒數量</option>
+              <select v-model="num_churros" style="color:black;margin:auto;display: inline-block;" id="churros" name="churros">
+                    <option value="0">請選擇吉拿棒數量</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -225,8 +231,8 @@
               <p>$120</p>
             <img src="https://sales.vscinemas.com.tw/CDN/media/entity/get/ItemGraphic/10004654"/><br>
 
-              <select style="color:black;margin:auto;display: inline-block;" id="large-popcorn" name="large-popcorn">
-                    <option value="">請選擇大爆米花數量</option>
+              <select v-model="num_popcorn[0]" style="color:black;margin:auto;display: inline-block;" id="large-popcorn" name="large-popcorn">
+                    <option value="0">請選擇大爆米花數量</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -242,8 +248,8 @@
               <p>中爆米花</p>
               <p>$110</p>
               <img src="https://sales.vscinemas.com.tw/CDN/media/entity/get/ItemGraphic/10004655" /><br>
-              <select style="color:black;margin:auto;display: inline-block;" id="medium-popcorn" name="medium-popcorn">
-                    <option value="">請選擇中爆米花數量</option>
+              <select v-model="num_popcorn[1]" style="color:black;margin:auto;display: inline-block;" id="medium-popcorn" name="medium-popcorn">
+                    <option value="0">請選擇中爆米花數量</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -259,8 +265,8 @@
               <p>小爆米花</p>
               <p>$100</p>
               <img src="https://sales.vscinemas.com.tw/CDN/media/entity/get/ItemGraphic/10004656" /><br>
-              <select style="color:black;margin:auto;display: inline;" id="small-popcorn" name="small-popcorn">
-                    <option value="">請選擇小爆米花數量</option>
+              <select v-model="num_popcorn[2]" style="color:black;margin:auto;display: inline;" id="small-popcorn" name="small-popcorn">
+                    <option value="0">請選擇小爆米花數量</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -272,152 +278,121 @@
                 </select>
             </div>
       </div>
-
-
   </div>
-
+    {% endraw %}
   <div  class="continue" style="margin-top:15px;text-align:right;">
-           <input type="submit" style="float:right;" id="continue" value="繼續"></input>
+    <input type="submit" style="float:right;" id="continue" value="繼續" @click="nextPage()"></input>
   </div>
-
-  <footer style="height:290px;background-color:white;" class="footer"></footer>
-
-
+</main>
+</div>
+</div>
+    <div id="session_id" d="{{ session_id }}" style="display: none;"></div>
+        <!-- var token = document.getElementById('token').getAttribute('d'); -->
 
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-
-<!--票數與價格-->
-<script>
-    $("#regular-ticket").on("change", function() {
-        $("#regular-ticket option:selected").each(function () {
-            var obj1 = parseInt($("#regular-ticket option:selected").val());
-            var obj2 = parseInt(obj1 * 250);
-            var obj3 = parseInt($("#concession-ticket option:selected").val());
-            var obj4 = parseInt(obj3 * 190);
-            var obj5 = parseInt($("#senior-ticket option:selected").val());
-            var obj6 = parseInt(obj5 * 150);
-
-            var obj7 = obj1 + obj3 + obj5;
-            var obj8 = obj2 + obj4 + obj6;
-
-            console.log(obj8);
-
-            $("#total_regular").html(obj2);
-            $("#total_regular").html(obj2);
-            $("#total_num").html(obj7);
-            $("#total_money").html(obj8);
-        });
-    });
-
-    $("#concession-ticket").on("change", function() {
-        $("#concession-ticket option:selected").each(function () {
-            var obj1 = parseInt($("#regular-ticket option:selected").val());
-            var obj2 = parseInt(obj1 * 250);
-            var obj3 = parseInt($("#concession-ticket option:selected").val());
-            var obj4 = parseInt(obj3 * 190);
-            var obj5 = parseInt($("#senior-ticket option:selected").val());
-            var obj6 = parseInt(obj5 * 150);
-
-            var obj7 = obj1 + obj3 + obj5;
-            var obj8 = obj2 + obj4 + obj6;
-
-
-
-
-            $("#total_concession").html(obj4);
-            $("#total_concession").html(obj4);
-            $("#total_num").html(obj7);
-            $("#total_money").html(obj8);
-        });
-    });
-
-    $("#senior-ticket").on("change", function() {
-        $("#senior-ticket option:selected").each(function () {
-            var obj1 = parseInt($("#regular-ticket option:selected").val());
-            var obj2 = parseInt(obj1 * 250);
-            var obj3 = parseInt($("#concession-ticket option:selected").val());
-            var obj4 = parseInt(obj3 * 190);
-            var obj5 = parseInt($("#senior-ticket option:selected").val());
-            var obj6 = parseInt(obj5 * 150);
-
-            var obj7 = obj1 + obj3 + obj5;
-            var obj8 = obj2 + obj4 + obj6;
-
-            $("#total_senior").html(obj6);
-            $("#total_senior").html(obj6);
-            $("#total_num").html(obj7);
-            $("#total_money").html(obj8);
-        });
-    });
-
-
-</script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.backtotop.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 
 <!-- 資料傳送 -->
 <script type=text/javascript>
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 
-<script language="javascript" type="text/javascript">
-    $("#submit").click(function(e){
-        var formData = new FormData();
-        formData.append('credit_card', $("#credit_card").val());
-        formData.append('counters', $("#counters").val());
+<!-- Vue app -->
+<script type="module">
+  import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+  createApp({
+    data() {
+      return {
+        showFood: false,
+        payment: '',
+        ticket: [0, 0, 0],
+        num_cola: [0, 0, 0],
+        num_hotdog: 0,
+        num_churros: 0,
+        num_popcorn: [0, 0, 0],
+        session_id: ''
+      }
+    },
+    mounted () {
+      this.session_id = document.getElementById('session_id').getAttribute('d')
+    },
+    computed: {
+      num_ticket() {
+        return Number(this.ticket[0]) + Number(this.ticket[1]) + Number(this.ticket[2])
+      },
+      total() {
+        return this.ticket[0] * 250 +this.ticket[1] * 190 +this.ticket[2] * 150
+              + this.num_cola[0] * 60 + this.num_cola[1] * 55 + this.num_cola[2] * 50 
+              + this.num_hotdog * 110 + this.num_churros * 110
+              + this.num_popcorn[0] * 120 + this.num_popcorn[1] * 110 + this.num_popcorn[2] * 100
+      }
+    },
+    methods: {
+      chooseFood: function() {
+          this.showFood = !this.showFood;
+      },
+      nextPage: function() {
+        if (this.num_ticket == 0) {
+          alert("You have to choose at least one ticket")
+        }
+        else {
+          var yes = confirm("票數: " + this.num_ticket
+                            + "\n總金額: " + this.total)
+          if (yes) {
+            axios.post($SCRIPT_ROOT + "/payment/" + this.session_id, {
+              payment: this.payment,
+              ticket: this.ticket,
+              cola: this.num_cola,
+              hotdog: this.num_hotdog,
+              churros: this.num_churros,
+              popcorn: this.num_popcorn,
+              num_ticket: this.num_ticket,
+              total: this.total,
+            })
+            .then(res => {
+              console.log(res)
+              location.href = $SCRIPT_ROOT + '/choose_seat';
+            })
+            .catch(err => {
+              console.error(err); 
+            })
+          }
+          else {}
+        }
+      }
+    }
 
-        formData.append('regular-ticket', $("#regular-ticket").val());
-        formData.append('concession-ticket', $("#concession-ticket").val());
-        formData.append('senior-ticket', $("#senior-ticket").val());
-        formData.append('large-cola', $("#large-cola").val());
-        formData.append('medium-cola', $("#medium-cola").val());
-        formData.append('small-cola', $("#small-cola").val());
-
-        formData.append('hotdog', $("#hotdog").val());
-        formData.append('churros', $("#churros").val());
-
-        formData.append('large-popcorn', $("#large-popcorn").val());
-        formData.append('medium-popcorn', $("#medium-popcorn").val());
-        formData.append('small-popcorn', $("#small-popcorn").val());
-
-
-        $.ajax({
-            type: "POST",
-            url: $SCRIPT_ROOT + "/signup",
-            dataType: "json",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: (data) => {
-                if (data.login) {
-                    alert("Hello")
-                    location.reload()
-                } else {
-                    alert("Wrong");
-                    // location.href = $SCRIPT_ROOT + "/signup"
-                    location.reload()
-                }
-
-            },
-            error: () => {
-                alert("Error")
-            }
-        });
-    });
-
-
+  }).mount('#app')
 </script>
-
 <!-- jquery 連結 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- jquery ui 連結 -->
-<script src = "../static/jquery2.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous">
 
 </script>
 
+<style>
+.select {
+  display: inline-block; 
+}
+.color {
+  display: block;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+}
+.select input {
+  opacity: 0;
+/* 利用透明度讓選取的點看不到 */
+}
+input:checked+.color {
+  border-color: #e3393c;
+/* 當選項被點選時 checked 就改變 */
+}
+</style>
 
 </body>
 </html>

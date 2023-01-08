@@ -473,7 +473,7 @@ width:100px;
 padding:15px;
 }
 
-.pay_method button{
+.pay_method input{
 width:500px;
 padding:15px;
 margin-bottom:15px;
@@ -517,62 +517,6 @@ background-color:olive;
 
 }
 
-.seat input{
-    background-color:green;
-    width:30px;
-    height:20px;
-    border-top-right-radius:3px;
-    border-top-left-radius:3px;
-    text-align:center;
-    margin:0px 3px;
-}
-
-.seat_example{
-    background-color:green;
-    width:20px;
-    height:16px;
-    border-top-right-radius:3px;
-    border-top-left-radius:3px;
-    margin:0px 3px;
-}
-
-.seat_seatshow{
-    background-color:black;
-    width:20px;
-    height:16px;
-    border-top-right-radius:3px;
-    border-top-left-radius:3px;
-    margin:0px 3px;
-}
-
-.seat_occupied{
-    background-color:gray;
-    width:20px;
-    height:16px;
-    border-top-right-radius:3px;
-    border-top-left-radius:3px;
-    margin:0px 3px;
-}
-
-.seat.selected{
-    background-color:salmon;
-}
-
-.seat.seatshow{
-    background-color:salmon;
-}
-
-.seat:not(.occupied):hover{
-    background-color:black;
-    transform:scale(1.2);
-    cursor:pointer;
-}
-
-.seat:not(.occupied):active{
-    background-color:gray;
-    cursor:pointer;
-}
-
 .screen {
     margin:5px auto 10px auto;
     width: 250px;
@@ -592,16 +536,6 @@ background-color:olive;
     justify-content: center;
     }
 
-.seat-table{
-margin:5px auto 20px auto;
-width: 400px;
-height: 200px;
-transform:rotateX(-28deg);
-
-text-align:center;
-display: flex;
-justify-content: center;
-}
 
 .right_seat{
  margin:auto;
@@ -645,14 +579,4 @@ margin:auto;
 }
  .occupied{
  margin:auto;
-
-
 }
-
-/*.seat:nth-last-of-type(2){
-    margin-left:20px;
-}
-
-.seat:nth-last-of-type(6){
-    margin-left:20px;
-}*/

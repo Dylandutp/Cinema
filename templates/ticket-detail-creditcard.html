@@ -28,14 +28,15 @@
   </header>
 </div>
 
+<div id="app">
+{% raw %}
 <div class="wrapper row3">
   <main style="padding:50px;" class="hoc container clear">
   <div class="ticket-info">
-      <h1 id="movie_name_ch"><strong>阿凡達</strong></h1>
-      <p id="movie_name_en">Afenda</p>
-      <p id="theater">台北</p>
-      <p id="time"><strong>12/31 17:20</strong></p>
-      <p id="ticket-type"></p><p id="ticket_num">張</p>
+      <h1 id="movie_name_ch"><strong>{{ movie_name }}</strong></h1>
+      <p id="theater">{{ theater_name }}</p>
+      <p id="time"><strong>{{ date + " " + time}}</strong></p>
+      <p id="ticket-type"></p><p id="ticket_num">共 {{ num_ticket }} 張</p>
   </div>
 
   <div class="credit_card">
@@ -46,24 +47,24 @@
       <p>電子信箱*</p>
       <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
         <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_half first">
-            <input type="text" name='credit_card_email' id="credit_card_email" required="required" placeholder="address@mail.com"></div>
+            <input v-model="email" type="text" name='credit_card_email' id="credit_card_email" required="required" placeholder="address@mail.com" :value="email"></div>
       </div>
 
       <h1>信用卡資訊</h1>
       <p>信用卡號*</p>
       <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
         <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_half first">
-            <input type="text" name='credit_card_num' id="credit_card_num" required="required" maxlength="16" pattern="d{16}" placeholder="XXXXXXXXXXXXXXXX" ></div>
+            <input v-model="credit_num" type="text" name='credit_card_num' id="credit_card_num" required="required" maxlength="16" pattern="d{16}" placeholder="XXXXXXXXXXXXXXXX" ></div>
       </div>
       <p>卡片安全碼*</p>
       <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
         <div  style="color: #4d4d4d;background: #FFFFFF;" class="one_half first">
-            <input type="text" name='credit_card_CVV' id="credit_card_CVV"  required="required" maxlength="3" pattern="d{3}" ></div>
+            <input v-model="safe" type="text" name='credit_card_CVV' id="credit_card_CVV"  required="required" maxlength="3" pattern="d{3}" ></div>
       </div>
       <p>卡片到期日*</p>
       <div style="text-align: center;margin-bottom:20px;" class="group btmspace-50 demo">
-        <div  style="display:flex;color: #4d4d4d;background: #FFFFFF;" class="one_half first">
-            <select  id="credit_card_month" name="credit_card_month">
+        <div style="display:flex;color: #4d4d4d;background: #FFFFFF;" class="one_half first">
+            <select v-model="month" id="credit_card_month" name="credit_card_month">
                 <option value="">月</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -78,7 +79,7 @@
                 <option value="11">11</option>
                 <option value="12">12</option>
             </select>
-            <select id="credit_card_year" name="credit_card_year">
+            <select v-model="year" id="credit_card_year" name="credit_card_year">
                 <option value="">年</option>
                 <option value="22">22</option>
                 <option value="23">23</option>
@@ -94,86 +95,87 @@
                 <option value="33">33</option>
             </select>
         </div>
-
-
-
-
   </div>
-      <input type="submit" style="width:200px;height:50px;margin-top:50px;" value="付款"/>
-
-
-
-
-
+      <input type="submit" style="width:200px;height:50px;margin-top:50px;" value="付款" @click="pay()"/>
+  </div>
+</main>
+</div>
+{% endraw %}
 </div>
 
 
 
 
-
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-
-<!-- jquery 連結 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- jquery ui 連結 -->
-<script src = "../static/jquery2.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.backtotop.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous">
+            crossorigin="anonymous"></script>
 
-</script>
-
-<!-- 資料傳送 -->
+<!-- jquery ui 連結 -->
 <script type=text/javascript>
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
-
-<script language="javascript" type="text/javascript">
-
-
-
-    $("submit").click(function(e){
-        var formData = new FormData();
-        formData.append('credit_card', $("#credit_card").val());
-
-        formData.append('credit_card_email', $("#credit_card_email").val());
-        formData.append('credit_card_num', $("#credit_card_num").val());
-        formData.append('credit_card_CVV', $("#credit_card_CVV").val());
-        formData.append('credit_card_month', $("#credit_card_month").val());
-        formData.append('credit_card_year', $("#credit_card_year").val());
-
-
-
-
-
-        $.ajax({
-            type: "POST",
-            url: $SCRIPT_ROOT + "/signup",
-            dataType: "json",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: (data) => {
-                if (data.login) {
-                    alert("Hello")
-                    location.reload()
-                } else {
-                    alert("Wrong");
-                    // location.href = $SCRIPT_ROOT + "/signup"
-                    location.reload()
-                }
-
-            },
-            error: () => {
-                alert("Error")
-            }
-        });
-    });
-
-
-
+<!-- Vue app -->
+<script type="module">
+  import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+  createApp({
+    data() {
+      return {
+        theater_name: '',
+        movie_name: '',
+        member_name: '',
+        email: '',
+        date: '',
+        time: '',
+        ticket: 0,
+        month: '',
+        year: '',
+        credit_num: '',
+        safe: ''
+      }
+    },
+    mounted () {
+      axios.get($SCRIPT_ROOT + "/order_information")
+      .then(res => {
+        console.log(res);
+        this.theater_name = res.data['theater_name'];
+        this.movie_name = res.data['movie_name'];
+        this.member_name = res.data['member_name']
+        this.email = res.data['email']
+        this.date = res.data['date'];
+        this.time = res.data['time'];
+        this.ticket = res.data['num_ticket']
+      })
+      .catch(err => {
+        console.error(err); 
+      })
+    },
+    methods: {
+      pay: function() {
+        var yes = confirm("Are you sure want to send?")
+        if (yes) {
+          axios.post($SCRIPT_ROOT + "/ticket_detail_credit",{
+            eamil: this.email,
+            credit_num: this.credit_num,
+            safe: this.safe,
+            month: this.month,
+            year: this.year
+          })
+          .then(res => {
+            console.log(res)
+            location.replace($SCRIPT_ROOT + "/ticket_detail_counter")
+          })
+          .catch(err => {
+            console.error(err); 
+          })
+        }
+        else {}
+      }
+    }
+  }).mount('#app')
 </script>
 </body>
 </html>

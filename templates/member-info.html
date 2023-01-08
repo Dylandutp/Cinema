@@ -78,6 +78,7 @@
       <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更換帳號信箱" id="resetEmail">
       <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改出生日期(僅能更換一次)" id="resetBirth">
       <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改登入密碼" id="resetPwd">
+      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="登出" id="logout">
       </div>
       <div id="isChange" d="{{ ischange }}" style="display: none;"></div>
 
@@ -102,6 +103,13 @@
       location.href = $SCRIPT_ROOT + "/change_birthday"
     }
   });
+  $("#logout").click(() => {
+    var yes = confirm("Are you sure want to logout?")
+    if (yes) {
+      location.href = $SCRIPT_ROOT + "/logout"
+    }
+    else {}
+  })
 </script>
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/jquery.backtotop.js"></script>

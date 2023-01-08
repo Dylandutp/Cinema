@@ -63,7 +63,7 @@ Licence URI: https://www.os-templates.com/template-terms
           <h2>{{ movie }}</h2>
           <template v-for="(item, index) in showingData" :key="item.date">
             <p v-show="showDate(index)">{{ item.date.slice(5) }}</p>
-            <button @click="chooseSeat(item.id, item.date.slice(5), item.start_time)">{{ item.start_time }}</button>
+            <button @click="nextPage(item.id, item.date.slice(5), item.start_time)">{{ item.start_time }}</button>
           </template>
         </div>
       </div>
@@ -160,20 +160,12 @@ Licence URI: https://www.os-templates.com/template-terms
           console.error(err); 
         })
       },
-      chooseSeat: function(id, date, time) {
+      nextPage: function(id, date, time) {
         var yes = confirm(this.movie + "\n"
                           + date + " " + time + "\n"
                           + "Are you sure you want to choose this showing?")
         if (yes) {
-          axios.post($SCRIPT_ROOT, {
-            session_id: id
-          })
-          .then(res => {
-            console.log(res)
-          })
-          .catch(err => {
-            console.error(err); 
-          })
+          location.href = $SCRIPT_ROOT + "/payment/" + id
         }
         else {}
       },

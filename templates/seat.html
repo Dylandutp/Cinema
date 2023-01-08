@@ -10,7 +10,7 @@
 <link href="../static/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <style type="text/css"></style>
 </head>
-<body id="top">
+<div id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -21,446 +21,507 @@
   <header id="header" class="hoc clear">
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
-      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
+      <h1 style="color:#ffffff"><a href="{{ url_for('main_page') }}">VIESHOW</a></h1>
     </div>
-    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
+    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('login') }}">會員服務</a></div>
     <!-- ################################################################################################ -->
   </header>
 </div>
-
-<div class="wrapper row3">
-  <main style="padding:50px;align-item:center;" class="hoc container clear">
-  <div class="ticket-info">
-      <h1 id="movie_name_ch"><strong>阿凡達</strong></h1>
-      <p id="movie_name_en">AVATAR THE WAY OF WATER</p>
-      <p id="theater">台北威秀影城</p>
-      <p id="time"><strong>12/31 17:20</strong></p>
-      <p id="ticket-type"></p><p id="ticket_num">張</p>
-  </div>
-
-
-  <div style="display:flex"  class="showcase_class">
-        <div class="available" style="display:flex" >
-            <div style="margin:0px;" class="seat_example"></div>
-            Available
-        </div>
-
-        <div class="selected" style="display:flex" >
-             <div class="seat_seatshow"></div>
-            Selected
-        </div>
-
-          <div class="occupied" style="display:flex" >
-             <div class="seat_occupied"></div>
-            Occupied
-        </div>
-
-<!--        <div class="one_quarter">Occupied</div>-->
-      </div>
-
-<!--      <lu class="showcase">-->
-<!--          <li>-->
-<!--              <div class="seat"></div>-->
-<!--              <small>Available</small>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--              <div class="seat_seatshow"></div>-->
-<!--              <small>Selected</small>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--              <div class="seat_occupied"></div>-->
-<!--              <small>Occupied</small>-->
-<!--          </li>-->
-<!--      </lu>-->
-  <div class="seat-container">
-      <div class="screen"><p>螢幕</p></div>
-
-      <div style="display:flex;" class="seat-table">
-        <form id="seat-form">
-
-          <div  style="display:flex;" class="left_seat">
-              <div  class="row">
-                  <div class="seat"><input type="button" name="seat" value="A1" id="A1"></div>
-                  <div class="seat"><input type="button" name="seat" value="B1" id="B1"></div>
-                  <div class="seat"><input type="button" name="seat" value="C1" id="C1"></div>
-                  <div class="seat"><input type="button" name="seat" value="D1" id="D1"></div>
-                  <div class="seat"><input type="button" name="seat" value="E1" id="E1"></div>
-                  <div class="seat"><input type="button" name="seat" value="F1" id="F1"></div>
-                  <div class="seat"><input type="button" name="seat" value="G1" id="G1"></div>
-                  <div class="seat"><input type="button" name="seat" value="H1" id="H1"></div>
-                  <div class="seat"><input type="button" name="seat" value="I1" id="I1"></div>
-                  <div class="seat"><input type="button" name="seat" value="J1" id="J1"></div>
-              </div>
-              <div style="text-align:center;" class="row">
-                  <div class="seat"><input type="button" name="seat" value="A2" id="A2"></div>
-                  <div class="seat"><input type="button" name="seat" value="B2" id="B2"></div>
-                  <div class="seat"><input type="button" name="seat" value="C2" id="C2"></div>
-                  <div class="seat"><input type="button" name="seat" value="D2" id="D2"></div>
-                  <div class="seat"><input type="button" name="seat" value="E2" id="E2"></div>
-                  <div class="seat"><input type="button" name="seat" value="F2" id="F2"></div>
-                  <div class="seat"><input type="button" name="seat" value="G2" id="G2"></div>
-                  <div class="seat"><input type="button" name="seat" value="H2" id="H2"></div>
-                  <div class="seat"><input type="button" name="seat" value="I2" id="I2"></div>
-                  <div class="seat"><input type="button" name="seat" value="J2" id="J2"></div>
-              </div>
-
-          </div>
-
-          <div  style="display:flex;" class="center_seat">
-              <div  class="row">
-                  <div class="seat"><input type="button" name="seat" value="A3" id="A3"></div>
-                  <div class="seat"><input type="button" name="seat" value="B3" id="B3"></div>
-                  <div class="seat"><input type="button" name="seat" value="C3" id="C3"></div>
-                  <div class="seat"><input type="button" name="seat" value="D3" id="D3"></div>
-                  <div class="seat"><input type="button" name="seat" value="E3" id="E3"></div>
-                  <div class="seat"><input type="button" name="seat" value="F3" id="F3"></div>
-                  <div class="seat"><input type="button" name="seat" value="G3" id="G3"></div>
-                  <div class="seat"><input type="button" name="seat" value="H3" id="H3"></div>
-                  <div class="seat"><input type="button" name="seat" value="I3" id="I3"></div>
-                  <div class="seat"><input type="button" name="seat" value="J3" id="J3"></div>
-              </div>
-
-              <div  class="row">
-                  <div class="seat"><input type="button" name="seat" value="A4" id="A4"></div>
-                  <div class="seat"><input type="button" name="seat" value="B4" id="B4"></div>
-                  <div class="seat"><input type="button" name="seat" value="B4" id="C4"></div>
-                  <div class="seat"><input type="button" name="seat" value="D4" id="D4"></div>
-                  <div class="seat"><input type="button" name="seat" value="E4" id="E4"></div>
-                  <div class="seat"><input type="button" name="seat" value="F4" id="F4"></div>
-                  <div class="seat"><input type="button" name="seat" value="G4" id="G4"></div>
-                  <div class="seat"><input type="button" name="seat" value="H4" id="H4"></div>
-                  <div class="seat"><input type="button" name="seat" value="I4" id="I4"></div>
-                  <div class="seat"><input type="button" name="seat" value="J4" id="j4"></div>
-              </div>
-
-              <div style="text-align:center;" class="row">
-                  <div class="seat"><input type="button" name="seat" value="A5" id="A5"></div>
-                  <div class="seat"><input type="button" name="seat" value="B5" id="B5"></div>
-                  <div class="seat"><input type="button" name="seat" value="C5" id="C5"></div>
-                  <div class="seat"><input type="button" name="seat" value="D5" id="D5"></div>
-                  <div class="seat"><input type="button" name="seat" value="E5" id="E5"></div>
-                  <div class="seat"><input type="button" name="seat" value="F5" id="F5"></div>
-                  <div class="seat"><input type="button" name="seat" value="G5" id="G5"></div>
-                  <div class="seat"><input type="button" name="seat" value="H5" id="H5"></div>
-                  <div class="seat"><input type="button" name="seat" value="I5" id="I5"></div>
-                  <div class="seat"><input type="button" name="seat" value="J5" id="J5"></div>
-              </div>
-              <div  class="row">
-                  <div class="seat"><input type="button" name="seat" value="A6" id="A6"></div>
-                  <div class="seat"><input type="button" name="seat" value="B6" id="B6"></div>
-                  <div class="seat"><input type="button" name="seat" value="C6" id="C6"></div>
-                  <div class="seat"><input type="button" name="seat" value="D6" id="D6"></div>
-                  <div class="seat"><input type="button" name="seat" value="E6" id="E6"></div>
-                  <div class="seat"><input type="button" name="seat" value="F6" id="F6"></div>
-                  <div class="seat"><input type="button" name="seat" value="G6" id="G6"></div>
-                  <div class="seat"><input type="button" name="seat" value="H6" id="H6"></div>
-                  <div class="seat"><input type="button" name="seat" value="I6" id="I6"></div>
-                  <div class="seat"><input type="button" name="seat" value="J6" id="J6"></div>
-              </div>
-              <div  class="row">
-                  <div class="seat"><input type="button" name="seat" value="A7" id="A7"></div>
-                  <div class="seat"><input type="button" name="seat" value="B7" id="B7"></div>
-                  <div class="seat"><input type="button" name="seat" value="C7" id="C7"></div>
-                  <div class="seat"><input type="button" name="seat" value="D7" id="D7"></div>
-                  <div class="seat"><input type="button" name="seat" value="E7" id="E7"></div>
-                  <div class="seat"><input type="button" name="seat" value="F7" id="F7"></div>
-                  <div class="seat"><input type="button" name="seat" value="G7" id="G7"></div>
-                  <div class="seat"><input type="button" name="seat" value="H7" id="H7"></div>
-                  <div class="seat"><input type="button" name="seat" value="I7" id="I7"></div>
-                  <div class="seat"><input type="button" name="seat" value="J7" id="J7"></div>
-              </div>
-
-          </div>
-
-          <div  style="display:flex;" class="right_seat">
-              <div  class="row">
-                  <div class="seat"><input type="button" name="seat" value="A8" id="A8"></div>
-                  <div class="seat"><input type="button" name="seat" value="B8" id="B8"></div>
-                  <div class="seat"><input type="button" name="seat" value="C8" id="C8"></div>
-                  <div class="seat"><input type="button" name="seat" value="D8" id="D8"></div>
-                  <div class="seat"><input type="button" name="seat" value="E8" id="E8"></div>
-                  <div class="seat"><input type="button" name="seat" value="F8" id="F8"></div>
-                  <div class="seat"><input type="button" name="seat" value="G8" id="G8"></div>
-                  <div class="seat"><input type="button" name="seat" value="H8" id="H8"></div>
-                  <div class="seat"><input type="button" name="seat" value="I8" id="I8"></div>
-                  <div class="seat"><input type="button" name="seat" value="J8" id="J8"></div>
-              </div>
-              <div style="text-align:center;" class="row">
-                  <div class="seat"><input type="button" name="seat" value="A9" id="A9"></div>
-                  <div class="seat"><input type="button" name="seat" value="B9" id="B9"></div>
-                  <div class="seat"><input type="button" name="seat" value="C9" id="C9"></div>
-                  <div class="seat"><input type="button" name="seat" value="D9" id="D9"></div>
-                  <div class="seat"><input type="button" name="seat" value="E9" id="E9"></div>
-                  <div class="seat"><input type="button" name="seat" value="F9" id="F9"></div>
-                  <div class="seat"><input type="button" name="seat" value="G9" id="G9"></div>
-                  <div class="seat"><input type="button" name="seat" value="H9" id="H9"></div>
-                  <div class="seat"><input type="button" name="seat" value="I9" id="I9"></div>
-                  <div class="seat"><input type="button" name="seat" value="J9" id="J9"></div>
-              </div>
-          </div>
-      </div>
-      </form>
-
-  </div>
-
-
 </div>
-<script>
-    const form = document.getElementById('seat-form');
-    const seats = [];
 
-for (const element of form.elements) {
-  if (element.type == 'button' && element.clic()k) {
-    seats.push(element.value);
-  }
-}
-
-console.log(seats); // ['A1', 'C1']
-
-</script>
+<div id="app">
+    <div class="wrapper">
+        <div class="cinema-wrapper">
+            <h1 class="title">選擇座位</h1>
+            <div class="btn-wrapper">
+                <div class="btn-buy" @click="resetSeat">
+                    重置座位
+                </div>
+                <!--智能选择-->
+                <div class="btn-buy smart" @click="smartChoose(5)">自動選擇</div>
+            </div>
+            <div class="seat-wrapper">
+                <div class="illustration">
+                    <div class="illustration-img-wrapper unselected-seat">
+                    </div>
+                    <span class="illustration-text">可選</span>
+                    <div class="illustration-img-wrapper selected-seat">
+                    </div>
+                    <span class="illustration-text">已選</span>
+                    <div class="illustration-img-wrapper bought-seat">
+                    </div>
+                    <span class="illustration-text">不可选</span>
+                </div>
+                <div class="screen">
+                    螢幕
+                </div>
+                <div class="screen-center">
+                    <div class="mid-line"></div>
+                </div>
+                <div class="inner-seat-wrapper" ref="innerSeatWrapper">
+                    <div v-for="row in seatRow">
+                        <!--这里的v-if很重要，如果没有则会导致报错，因为seatArray初始状态为空-->
+                        <div v-for="col in seatCol" v-if="seatArray.length>0" class="seat"
+                            :style="{width:seatSize+'px',height:seatSize+'px'}">
+                            <div class="inner-seat" @click="handleChooseSeat(row-1,col-1)"
+                                v-if="seatArray[row-1][col-1]!==-1"
+                                :class="seatArray[row-1][col-1]===2?'bought-seat':(seatArray[row-1][col-1]===1?'selected-seat':'unselected-seat')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="continue" style="margin-top:15px;text-align:right;">
+        <input type="submit" style="float:right; color:black" id="continue" value="繼續" @click="nextPage()"></input>
+    </div>
+</div>
 
 
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-<!--電影選座位-->
-
-<!--ocalStorage.setItem(key,vatue）是本地存储，永久性的，将value存储在hey字段&ndash;&gt;-->
-<script language="javascript">
-function setMovieData (movieIndex, moviePrice){
-localStorage.setItem('selectedMovieIndex',movieIndex);
-localStorage.setItem('selectedMoviePrice',moviePrice);
-}
-</script>
-<!--.map()返回一个新数组，里面存着选择的座位的index-->
-<!--cost seatsIndex=[...selectedSeats].map(seat=>[...seats].indexOf(seat));//存储在本地-->
-<!--localStorage.setItem("selectedSeats",JSON.stringify(seatsIndex));//计算选择的座位数量，并写到hum里-->
-<!--num. innerText=selectedSeatsCount;//计算总价格-->
-
-<script language="javascript">
-function updateSelectedCount(){
-    cost selectedSeats = document.querySelectorAll(.seat.selected');
-    cost seatsIndex=[...selectedSeats].map(seat=>[...seats].indexOf(seat));
-    localStorage.setItem("selectedSeats",JSON.stringify(seatsIndex));
-    cost selectedSeatsCount-selectedSeats.length;
-    num. innerText=selectedSeatsCount;
-    price.innerText-selectedSeatsCount*ticketPrice;
-    setMovieData(movieSelect.selectedIndex,movieSel);
-
-    setMovieData(movieSelect.selectedIndex,movieSelect.value);
-}
-</script>
-
-<!--//从Localstorage 获取数据selectedseats数据，#把被选中的seat加一个selected属性，更新-->
-<!--//JSON.parse(）方法将数据特换为 Javascript 对家。-->
-<!--        //加屬性.selected-->
-
-<script language="JavaScript">
-function populateUI(){
-    selectedSeats=JSON.parse(localStorage.getItem('selectedSeats'));
-
-    if (selectedSeats != null && selectedSeats. length>0){
-        seats.forEach((seat, index)=>{
-            if(selectedSeats.indexOf(index)>-1){
-                seat.classlist.add('selected');
-            }
-        });
-    }
-}
-</script>
-<!--    //点击seat事件-->
-<script language="JavaScript">
-container.addEventListener('click', e => {
-    if(
-        e.target.classList.contains('seat')&&
-        !e.target.classList.contains('occupied')
-    ){
-        e.target.classList.toggle('selected');
-
-        updateSelectedCount();
-        }
-    });
-</script>
-
-<script>
-<!--檢查重複-->
-  function input_check(){
-      var n1 = document.getElementById("phone_num");
-      var n2 = document.getElementById("phone_num_correct");
-      var e1 = document.getElementById("email");
-      var e2 = document.getElementById("email_correct");
-      var p1 = document.getElementById("pwd");
-      var p2 = document.getElementById("pwd_correct");
-
-
-      if(n1.value !=  n2.value && e1.value !=  e2.value && p1.value !=  p2.value){
-      alert("兩次電話號碼、帳號信箱與密碼皆輸入不同，請重新輸入");
-          n2.value="";
-          e2.value="";
-          p2.value="";
-      }
-      else if(n1.value !=  n2.value && e1.value !=  e2.value){
-      alert("兩次電話號碼與帳號信箱輸入不同，請重新輸入");
-          n2.value="";
-          e2.value="";
-      }
-      else if(e1.value !=  e2.value && p1.value !=  p2.value){
-      alert("兩次帳號信箱與密碼輸入不同，請重新輸入");
-          e2.value="";
-          p2.value="";
-      }
-      else if(p1.value !=  p2.value){
-      alert("兩次電話號碼與密碼輸入不同，請重新輸入");
-          p2.value="";
-          n2.value="";
-      }
-      else if(n1.value !=  n2.value){
-      alert("兩次電話號碼輸入不同，請重新輸入");
-          n2.value="";
-      }
-      else if(e1.value !=  e2.value){
-      alert("兩次帳號信箱輸入不同，請重新輸入");
-          e2.value="";
-      }
-      else if(p1.value !=  p2.value){
-      alert("兩次密碼輸入不同，請重新輸入");
-          p2.value="";
-      };
-  };
-</script>
-<script language="javascript">
-    <!-- 出生日期 -->
-    var myDate = new Date;
-    var year = myDate.getFullYear(); //获取当前年
-    var mon = myDate.getMonth()+1 < 10 ? "0"+(myDate.getMonth()+1) : (myDate.getMonth()+1);//
-    var dat = myDate.getDate() < 10 ? "0"+myDate.getDate() : myDate.getDate();
-    $("#birth_date").attr("max",year+"-"+mon+"-"+dat);
-
-<!-- 資料傳送 -->
-</script>
-<script type=text/javascript>
-    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-
-<script language="javascript" type="text/javascript">
-    $("#submit").click(function(e){
-        var formData = new FormData();
-        formData.append('id_code', $("#id_code").val());
-        formData.append('email', $("#email").val());
-        formData.append('pwd', $("#pwd").val());
-        formData.append('first_name', $("#first_name").val());
-        formData.append('last_name', $("#last_name").val());
-        formData.append('birth_date', $("#birth_date").val());
-        formData.append('phone_num', $("#phone_num").val());
-
-
-        $.ajax({
-            type: "POST",
-            url: $SCRIPT_ROOT + "/signup",
-            dataType: "json",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: (data) => {
-                if (data.login) {
-                    alert("Hello")
-                    location.reload()
-                } else {
-                    alert("Wrong");
-                    // location.href = $SCRIPT_ROOT + "/signup"
-                    location.reload()
-                }
-
-            },
-            error: () => {
-                alert("Error")
-            }
-        });
-    });
-
-
-</script>
-
-<!-- jquery 連結 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- jquery ui 連結 -->
-<script src = "../static/jquery2.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.backtotop.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous">
-
 </script>
 
-<!-- 資料傳送 -->
+<!-- 設定根目錄 -->
 <script type=text/javascript>
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 
-<script language="javascript" type="text/javascript">
+<!--Vue app-->
+<script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    createApp({
+        data() {
+            return {
+                //影院座位的二维数组,-1为非座位，0为未购座位，1为已选座位(绿色),2为已购座位(红色)
+                seatArray: [],
+                //影院座位行数
+                seatRow: 4,
+                //影院座位列数
+                seatCol: 10,
+                //座位尺寸
+                seatSize: '',
+                //推荐选座最大数量
+                smartChooseMaxNum: 5,
+                selectedArray: [],
+                seatNumber: 0,
+                selledSeat: [],
+                initSeat: []
 
+            }
+        },
+        computed: {
+        },
+        methods: {
+            //向前后某个方向进行搜索的函数,参数是起始行，终止行,推荐座位个数
+            searchSeatByDirection: function (fromRow, toRow, num) {
+                /*
+                 * 推荐座位规则
+                 * (1)初始状态从座位行数的一半处的后一排的中间开始向左右分别搜索，取离中间最近的，如果满足条件，
+                 *    记录下该结果离座位中轴线的距离，后排搜索完成后取距离最小的那个结果座位最终结果，优先向后排进行搜索，
+                 *    后排都没有才往前排搜，前排逻辑同上
+                 *
+                 * (2)只考虑并排且连续的座位，不能不在一排或者一排中间有分隔
+                 *
+                 * */
 
+                /*
+                 * 保存当前方向搜索结果的数组,元素是对象,result是结果数组，offset代表与中轴线的偏移距离
+                 * {
+                 *   result:Array([x,y])
+                 *   offset:Number
+                 * }
+                 *
+                 */
+                let currentDirectionSearchResult = [];
 
-    $("credit_card").click(function(e){
-        var formData = new FormData();
-        formData.append('credit_card', $("#credit_card").val());
+                let largeRow = fromRow > toRow ? fromRow : toRow,
+                    smallRow = fromRow > toRow ? toRow : fromRow;
 
-
-
-        $.ajax({
-            type: "POST",
-            url: $SCRIPT_ROOT + "/signup",
-            dataType: "json",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: (data) => {
-                if (data.login) {
-                    alert("Hello")
-                    location.reload()
-                } else {
-                    alert("Wrong");
-                    // location.href = $SCRIPT_ROOT + "/signup"
-                    location.reload()
+                for (let i = smallRow; i <= largeRow; i++) {
+                    //每一排的搜索,找出该排里中轴线最近的一组座位
+                    let tempRowResult = [],
+                        minDistanceToMidLine = Infinity;
+                    for (let j = 0; j <= this.seatCol - num; j++) {
+                        //如果有合法位置
+                        if (this.checkRowSeatContinusAndEmpty(i, j, j + num - 1)) {
+                            //计算该组位置距离中轴线的距离:该组位置的中间位置到中轴线的距离
+                            let resultMidPos = parseInt((j + num / 2), 10);
+                            let distance = Math.abs(parseInt(this.seatCol / 2) - resultMidPos);
+                            //如果距离较短则更新
+                            if (distance < minDistanceToMidLine) {
+                                minDistanceToMidLine = distance;
+                                //该行的最终结果
+                                tempRowResult = this.generateRowResult(i, j, j + num - 1)
+                            }
+                        }
+                    }
+                    //保存该行的最终结果
+                    currentDirectionSearchResult.push({
+                        result: tempRowResult,
+                        offset: minDistanceToMidLine
+                    })
                 }
 
-            },
-            error: () => {
-                alert("Error")
-            }
-        });
-    });
-
-    $("counters").click(function(e){
-        var formData = new FormData();
-        formData.append('counters', $("#counters").val());
-
-
-
-        $.ajax({
-            type: "POST",
-            url: $SCRIPT_ROOT + "/signup",
-            dataType: "json",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: (data) => {
-                if (data.login) {
-                    alert("Hello")
-                    location.reload()
+                //处理后排的搜索结果:找到距离中轴线最短的一个
+                //注意这里的逻辑需要区分前后排，对于后排是从前往后，前排则是从后往前找
+                let isBackDir = fromRow < toRow;
+                let finalReuslt = [], minDistanceToMid = Infinity;
+                if (isBackDir) {
+                    //后排情况,从前往后
+                    currentDirectionSearchResult.forEach((item) => {
+                        if (item.offset < minDistanceToMid) {
+                            finalReuslt = item.result;
+                            minDistanceToMid = item.offset;
+                        }
+                    });
                 } else {
-                    alert("Wrong");
-                    // location.href = $SCRIPT_ROOT + "/signup"
-                    location.reload()
+                    //前排情况，从后往前找
+                    currentDirectionSearchResult.reverse().forEach((item) => {
+                        if (item.offset < minDistanceToMid) {
+                            finalReuslt = item.result;
+                            minDistanceToMid = item.offset;
+                        }
+                    })
                 }
 
+                //直接返回结果
+                return finalReuslt
             },
-            error: () => {
-                alert("Error")
+
+
+            //推荐选座,参数是推荐座位数目
+            smartChoose: function (num) {
+                //找到影院座位水平垂直中间位置的后一排
+                let rowStart = parseInt((this.seatRow - 1) / 2, 10) + 1;
+                //先从中间排往后排搜索
+                let backResult = this.searchSeatByDirection(rowStart, this.seatRow - 1, this.seatNumber);
+                if (backResult.length > 0) {
+                    this.chooseSeat(backResult);
+                    return
+                }
+                //再从中间排往前排搜索
+                let forwardResult = this.searchSeatByDirection(rowStart - 1, 0, this.seatNumber);
+                if (forwardResult.length > 0) {
+                    this.chooseSeat(forwardResult);
+                    return
+                }
+                //提示用户无合法位置可选
+                alert('无合法位置可选!')
+
+            },
+
+            /*辅助函数，判断每一行座位从i列到j列是否全部空余且连续
+             *
+             */
+            checkRowSeatContinusAndEmpty: function (rowNum, startPos, endPos) {
+                let isValid = true;
+                for (let i = startPos; i <= endPos; i++) {
+                    if (this.seatArray[rowNum][i] !== 0) {
+                        isValid = false;
+                        break;
+                    }
+                }
+                return isValid
+            },
+            //辅助函数：返回每一行的某个合理位置的座位数组
+            generateRowResult: function (row, startPos, endPos) {
+                let result = [];
+                for (let i = startPos; i <= endPos; i++) {
+                    result.push([row, i])
+                }
+                return result
+            },
+            //辅助函数:智能推荐的选座操作
+            chooseSeat: function (result) {
+                let oldArray = this.seatArray.slice();
+                for (let i = 0; i < result.length; i++) {
+                    //选定座位
+                    oldArray[result[i][0]][result[i][1]] = 1
+                    this.selectedArray.push({x: result[i][0], y: result[i][1]})
+                }
+            },
+
+
+            //重置座位
+            resetSeat: function () {
+                //将所有座位的值变为0
+                let oldArray = this.seatArray.slice();
+                for (let i = 0; i < this.seatRow; i++) {
+                    for (let j = 0; j < this.seatCol; j++) {
+                        if (oldArray[i][j] !== -1) {
+                            oldArray[i][j] = 0
+                        }
+                    }
+                }
+                this.seatArray = JSON.parse(JSON.stringify(this.initSeat));
+                this.selectedArray = [];
+            },
+            //选定且购买座位
+            buySeat: function () {
+                //遍历seatArray，将值为1的座位变为2
+                let oldArray = this.seatArray.slice();
+                for (let i = 0; i < this.seatRow; i++) {
+                    for (let j = 0; j < this.seatCol; j++) {
+                        if (oldArray[i][j] === 1) {
+                            oldArray[i][j] = 2
+                        }
+                    }
+                }
+                this.seatArray = oldArray;
+            },
+            //处理座位选择逻辑
+            handleChooseSeat: function (row, col) {
+                let seatValue = this.seatArray[row][col];
+                let newArray = this.seatArray;
+                //如果是已购座位，直接返回
+                if (seatValue === 2) return
+                //如果是已选座位点击后变未选
+                if (seatValue === 1) {
+                    newArray[row][col] = 0
+                    var i = -1
+                    this.selectedArray.forEach(
+                        function(item, index){ 
+                            if (item.x == row && item.y == col) {
+                                i = index
+                            }
+                        }
+                    )
+                    if (i >= 0) {
+                        this.selectedArray.splice(i, 1)
+                    }
+                } else if (seatValue === 0) {
+                    newArray[row][col] = 1
+                    this.selectedArray.push({x: row, y: col})
+                }
+                //必须整体更新二维数组，Vue无法检测到数组某一项更新,必须slice复制一个数组才行
+                this.seatArray = newArray.slice();
+                console.log(this.selectedArray)
+            },
+            //初始座位数组
+            initSeatArray: function () {
+                let seatArray = Array(this.seatRow).fill(0).map(() => Array(this.seatCol).fill(0));
+                this.seatArray = seatArray;
+                this.seatSize = this.$refs.innerSeatWrapper
+                    ? parseInt(parseInt(window.getComputedStyle(this.$refs.innerSeatWrapper).width, 10) / this.seatCol, 10)
+                    : 0;
+                //初始化不是座位的地方
+                this.initNonSeatPlace();
+                this.initSeat = JSON.parse(JSON.stringify(this.seatArray))
+            },
+            //初始化不是座位的地方
+            initNonSeatPlace: function () {
+                for (let i = 0; i < this.seatRow; i++) {
+                    this.seatArray[i][2] = -1;
+                    this.seatArray[i][this.seatArray[0].length - 3] = -1;
+                }
+                this.selledSeat.forEach((item) => {
+                    this.seatArray[item[0]][item[1]] = 2
+                })
+            },
+            nextPage: function() {
+                if (this.selectedArray.length != this.seatNumber) {
+                    alert("You need to choose " + this.seatNumber + " seat(s).")
+                }
+                else {
+                    axios.post($SCRIPT_ROOT + '/choose_seat', 
+                        {
+                            seat: this.selectedArray
+                        })
+                    .then(res => {
+                        console.log(res)
+                        if (!res.data["login"]){
+                            alert("You are not login, now turn to login page")
+                            location.href = $SCRIPT_ROOT + "/login"
+                        }
+                        else if (res.data["payment"] == 0) {
+                            location.replace($SCRIPT_ROOT + "/ticket_detail_credit")
+                        }
+                        else if (res.data["payment"] == 1) {
+                            location.replace($SCRIPT_ROOT + "/ticket_detail_counter")
+                        }
+                        else {
+                            alert("error")
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err); 
+                    })
+                }
             }
-        });
-    });
+            
+        },
 
-
+        mounted: function () {
+            axios.get($SCRIPT_ROOT + '/get_sell_seat')
+            .then(res => {
+                console.log(res)
+                this.seatNumber = res.data['ticket']
+                let tmp = res.data['seat']
+                tmp.forEach((item) => {
+                    this.selledSeat.push(new Array(item.row, item.col))
+                    }
+                )
+                this.initSeatArray()
+            })
+            .catch(err => {
+                console.error(err); 
+            })
+        }
+    }).mount('#app')
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+    .wrapper {
+        height: 90%;
+        padding: 40px;
+        box-sizing: border-box;
+    }
+
+    .cinema-wrapper {
+        height: 100%;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .seat-wrapper {
+        height: 600px;
+        width: 1000px;
+        border: 1px dotted #c5c5c5;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .screen {
+        margin: 0 auto;
+        height: 30px;
+        width: 300px;
+        background-color: #e3e3e3;
+        border-radius: 0 0 30px 30px;
+        color: #585858;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .inner-seat-wrapper {
+        position: absolute;
+        top: 120px;
+        bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .seat {
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inner-seat {
+        width: 80%;
+        height: 80%;
+        cursor: pointer;
+    }
+
+    .selected-seat {
+        background: url('../static/images/selected.png') center center no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .unselected-seat {
+        background: url('../static/images/unselected.png') center center no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .bought-seat {
+        background: url('../static/images/bought.png') center center no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .screen-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 5px;
+        font-size: 13px;
+        border-radius: 5px;
+        top: 50px;
+        background-color: #f6f6f6;
+        color: #636363;
+        border: 1px solid #b1b1b1;
+    }
+
+    .mid-line {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 100%;
+        width: 1px;
+        height: 800px;
+        border-left: 1px dashed #919191;
+    }
+
+    .btn-wrapper {
+        margin: 20px auto;
+        width: 1000px;
+        height: 30px;
+        text-align: center;
+    }
+
+    .btn-buy {
+        height: 100%;
+        line-height: 30px;
+        font-size: 14px;
+        border-radius: 5px;
+        padding: 0 5px;
+        background-color: #ffa349;
+        color: #ffffff;
+        display: inline-block;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .smart {
+        background-color: #39ac6a;
+    }
+
+    .illustration {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 35px;
+        width: 300px;
+    }
+
+    .illustration-img-wrapper {
+        width: 25px;
+        height: 25px;
+        position: relative;
+        top: 50%;
+        display: inline-block;
+        transform: translateY(-50%);
+        margin-left: 10px;
+    }
+
+    .illustration-text {
+        display: inline-block;
+        height: 100%;
+        line-height: 35px;
+        font-size: 14px;
+        position: relative;
+        top: -2px;
+    }
+</style>
 </body>
 </html>

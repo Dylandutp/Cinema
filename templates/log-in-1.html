@@ -91,8 +91,16 @@
             processData: false,
             success: (data) => {
                 if (data.login) {
+                  if (data.payment == 0) {
+                    location.replace($SCRIPT_ROOT + "/ticket_detail_credit")
+                  }
+                  else if (data.payment == 1) {
+                    location.replace($SCRIPT_ROOT + "/ticket_detail_counter")
+                  }
+                  else {
                     alert("Hello")
                     location.reload()
+                  }
                 } else {
                     alert("Wrong");
                     // location.href = $SCRIPT_ROOT + "/login1"
