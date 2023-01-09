@@ -28,14 +28,29 @@ def get_theater():
     return jsonify(theater)
 
 
+# Get Movie List
+@app.route("/movie_list")
+def get_movie_list():
+    movie_list = DB.getMovieList()
+    return jsonify(movie_list)
+
+
 # Get Movie
 @app.route("/movie", methods=["POST", "GET"])
 def get_movie():
     if request.method == "POST":
-        data = request.get_json()
-        theater_id = data.get('theater_id', None)
+        theater_id = request.get_json().get('theater_id', None)
         movie = DB.getMovie(theater_id)
         return jsonify(movie)
+
+
+# Get Movie Information
+@app.route("/movie_info", methods=["POST", "GET"])
+def get_movie_info():
+    if request.method == "POST":
+        movie_id = request.get_json().get('movie_id', None)
+        movie_info = DB.getMovieInfo(movie_id)
+        return jsonify(movie_info)
 
 
 # Get Showing
@@ -68,6 +83,20 @@ def get_order_information():
         data = DB.getOrderInfo(order_id)
         data['num_ticket'] = session['num_ticket']
         return jsonify(data)
+
+
+# Get Order
+@app.route("/order_detail", methods=["POST", "GET"])
+def get_order_detail():
+    if request.method == "POST":
+        pass
+    else:
+        orders = DB.getOrder(session['user'])
+        for order in orders:
+            order_id = order['order_id']
+            order['food'] = DB.getFoodOrder(order_id)
+            order['ticket'] = DB.getTicketOrder(order_id)
+        return jsonify(orders)
 
 
 # Get ticket number
@@ -286,6 +315,24 @@ def success_change(token):
         return "Wrong token"
     DB.UpdateEmail(data[0], data[1])
     return render_template("success_change.html")
+
+
+# search movie information
+@app.route("/movie_detail")
+def search_movie_detail():
+    return render_template("movie_detail.html") 
+    
+    
+# search movie information
+@app.route("/theater_detail")
+def search_theater_detail():
+    return render_template("cinema_info.html") 
+
+
+# display / update orders
+@app.route("/orders")
+def user_order():
+    return render_template("orders.html")
 
 
 if __name__ == '__main__':

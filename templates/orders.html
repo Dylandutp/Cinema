@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="" xmlns="http://www.w3.org/1999/html" style="background-color: white;">
+<head>
+<title>Movie Search Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../static/css/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+  <div style="padding: 0px;" class="wrapper row1">
+    <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+      <div id="logo" class="fl_left">
+        <h1 style="color:#ffffff"><a href="{{ url_for('main_page') }}">VIESHOW</a></h1>
+      </div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('user') }}">會員服務</a></div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('search_movie_detail') }}">電影介紹</a></div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('search_theater_detail') }}">影城介紹</a></div>
+    <!-- ################################################################################################ -->
+    </header>
+  </div>
+
+  <div id="app">
+  <!--四部電影-->
+    <div class="wrapper row3">
+      <main style="padding:50px 0;text-align:center;" class="hoc container clear">
+        <div style="margin-bottom:20px;" class="movie_table">
+          <template v-for="(order, index) in orders" :key="order.order_id">
+            <div style="margin: 10px; border:2px black solid; padding: 10px 20px; text-align: left;" :id="'order' + order.order_id">
+              {% raw %}
+              <p><strong>訂單編號：</strong> {{ order.order_id }}</p>
+              <p><strong>電影名稱：</strong> {{ order.movie_name }}</p>
+              <p><strong>地點：</strong> {{ order.theater_name }}</p>
+              <p><strong>Time：</strong> {{ order.date + " " + order.time }}</p>
+              <ul style="padding-left: 0px;"><strong>明細：</strong> 
+                <li style="padding-left: 28px; list-style: none;">
+                  <span v-if="order.ticket.regular > 0">全票：{{ order.ticket.regular }}張&nbsp&nbsp&nbsp</span>
+                  <span v-if="order.ticket.concession > 0">優待票：{{ order.ticket.concession }}張&nbsp&nbsp&nbsp</span>
+                  <span v-if="order.ticket.elder > 0">敬老票：{{ order.ticket.elder }}張&nbsp&nbsp&nbsp</span>
+                </li>
+                <span v-if="isChange">
+                  <template v-for="(item, i) in foodtype">
+                    <li style="padding-left: 28px; list-style: none;">{{ item }}
+                      <select style="display: inline-block; position: absolute;" :id="'index_' + index + 'foodorder_' + i">
+                        <option>0</option>
+                        <template v-for="index in 8"><option>{{ index }}</option></template>
+                      </select></li>
+                  </template>
+                </span>
+                <span v-else>
+                  <template v-for="(food, i) in order.food">
+                    <li style="padding-left: 28px; list-style: none;" :id="'index_' + index + 'food_' + food.id">{{ food.name + " * " + food.number }}</li>
+                  </template>
+                </span>
+              </ul>
+              <p v-if="isChange" style="margin-bottom: 25px;"><button style="float: right; width: 100px; height: 40px;" @click="save(index)">確認修改</button><br></p>
+              <p v-else style="margin-bottom: 25px;"><button style="float: right; width: 100px; height: 40px;" @click="change(index)">修改訂單</button><br></p>
+              {% endraw %}
+            </div>
+          </template>
+        </div>
+      </main>
+    </div>
+  </div>
+
+<!-- JAVASCRIPTS -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.backtotop.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+
+<!-- 設定根目錄 -->
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<!-- Vue app -->
+<script type="module">
+  import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+  createApp({
+    data() {
+      return {
+        selected: '',
+        orders: [],
+        displayMovie: false,
+        isChange: false,
+        foodtype: ['大可樂', '中可樂', '小可樂',
+                   '熱狗', '吉拿棒',
+                   '大爆米花', '中爆米花', '小爆米花']
+      }
+    },
+    mounted () {
+        axios.get($SCRIPT_ROOT + '/order_detail')
+        .then(res => {
+          console.log(res.data)
+          this.orders = res.data
+        })
+        .catch(err => {
+          console.error(err); 
+        })
+    },
+    methods: {
+      change: function(id) {
+        this.isChange = !this.isChange
+        console.log(this.orders[id].food.length)
+        for (var i = 0; i < this.orders[id].food.length; i++) {
+          var food_id = 'index_' + id + 'food_' + this.orders[id].food[i].id
+          // var food_id = 'index_0food_3'
+          console.log(document.getElementById(food_id).innerText.slice(-1))
+        }
+      },
+      save: function(id) {
+        this.isChange = !this.isChange
+          var foodorder_id = 'index_' + id + 'foodorder_' + (this.orders[id].food[0].id - 1)
+          console.log(document.getElementById(foodorder_id))
+          this.foodorder2 = 2
+
+      }
+    }
+  }).mount('#app')
+</script>
+
+</body>
+</html>

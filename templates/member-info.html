@@ -15,42 +15,22 @@
 .container .demo div:nth-child(odd){color:#FFFFFF; background:#CCCCCC;}
 .container .demo div:nth-child(even){color:#FFFFFF; background:#979797;}
 @media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
-/* DEMO ONLY */
 </style>
 </head>
 <body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div style="padding: 0px;" class="wrapper row1">
   <header id="header" class="hoc clear">
-    <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
       <h1 style="color:#ffffff"><a href={{ url_for('main_page') }}>VIESHOW</a></h1>
     </div>
-    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href={{ url_for('user') }}>會員服務</a></div>
-    <!-- ################################################################################################ -->
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('user') }}">會員服務</a></div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('search_movie_detail') }}">電影介紹</a></div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('search_theater_detail') }}">影城介紹</a></div>
   </header>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- Top Background Image Wrapper -->
-  <!-- ################################################################################################ -->
-<!-- End Top Background Image Wrapper -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row3">
   <main class="hoc container clear">
-    <!-- main body -->
-    <!-- ################################################################################################ -->
-    <div  class="content">
-
-      <!-- ################################################################################################ -->
+    <div class="three_quarter first">
       <h2 style="text-align:center;color: black;">會員資料</h2>
       <div style="margin-bottom:20px;" class="group btmspace-50 demo">
         <div class="one_quarter first">會員帳戶</div>
@@ -61,7 +41,7 @@
         <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ ID }}</div>
       </div>
 
-        <div style="margin-bottom:20px;" class="group btmspace-50 demo">
+      <div style="margin-bottom:20px;" class="group btmspace-50 demo">
         <div class="one_quarter first">出生日期</div>
         <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ birthdate }}</div>
       </div>
@@ -69,18 +49,24 @@
         <div class="one_quarter first">手機號碼</div>
         <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ phone }}</div>
       </div>
-      <div  style="margin-bottom:20px;" class="group btmspace-50 demo">
+      <div style="margin-bottom:20px;" class="group btmspace-50 demo">
         <div class="one_quarter first">目前擁有的點數</div>
         <div style="color: #0066CC;background: #FFFFFF;" class="three_quarter">{{ points }}</div>
       </div>
-      <h2 style="text-align:center;" >會員資料</h2>
+    </div>
+    <div class="one_quarter">
+      <h2 style="text-align:center;"><br><br></h2>
       <div>
-      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更換帳號信箱" id="resetEmail">
-      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改出生日期(僅能更換一次)" id="resetBirth">
-      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改登入密碼" id="resetPwd">
-      <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="登出" id="logout">
+        <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="查詢訂單" id="orders">
+        <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更換帳號信箱" id="resetEmail">
+        <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改出生日期(僅能更換一次)" id="resetBirth">
+        <input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="更改登入密碼" id="resetPwd">
       </div>
-      <div id="isChange" d="{{ ischange }}" style="display: none;"></div>
+    </div>
+  </main>
+</div>
+<input style="color:black;margin:auto; margin-bottom:20px; height:40px;font-size:16px;text-align:center;" type="button" value="登出" id="logout">
+<div id="isChange" d="{{ ischange }}" style="display: none;"></div>
 
 
 <!-- JAVASCRIPTS -->
@@ -89,6 +75,9 @@
 </script>
 <script language="javascript" type="text/javascript">
   var isChange = document.getElementById('isChange').getAttribute('d');
+  $("#orders").click(() => {
+    location.href = $SCRIPT_ROOT + "/orders"
+  });
   $("#resetPwd").click(() => {
     location.href = $SCRIPT_ROOT + "/user_confirm"
   });

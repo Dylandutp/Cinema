@@ -3,124 +3,130 @@
 <html lang="" xmlns="http://www.w3.org/1999/html" style="background-color: white;">
 <head>
 <title>Movie Search Page</title>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../static/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<style type="text/css">
-    p{
-        text-align: left;
-    }
-    .movie_name{
-        font-size: 27px;
-    }
-    .en_movie_name{
-        width: 7cm; 
-        font-size: 18px;
-    }
-    .info{
-        position: absolute;
-        left: 300px;
-        top: 200px;
-        display: inline;
-        float: left;
-
-    }
-    .intro{
-        position: absolute;
-        top: 450px;
-    }
-   .movie_choose{
-        position: absolute;
-        left: 700px;
-        /* top: 450px; */
-   }
-</style>
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div style="padding: 0px;" class="wrapper row1">
-  <header id="header" class="hoc clear">
+  <div style="padding: 0px;" class="wrapper row1">
+    <header id="header" class="hoc clear">
     <!-- ################################################################################################ -->
-    <div id="logo" class="fl_left">
-      <h1 style="color:#ffffff"><a href="front-page.html">VIESHOW</a></h1>
-    </div>
-    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">會員服務登入</a></div>
-    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="search_movie.html">電影介紹</a></div>
-    <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="log-in-1.html">影城介紹</a></div>
+      <div id="logo" class="fl_left">
+        <h1 style="color:#ffffff"><a href="{{ url_for('main_page') }}">VIESHOW</a></h1>
+      </div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('user') }}">會員服務</a></div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('search_movie_detail') }}">電影介紹</a></div>
+      <div style="background-color:#2660a9; " class="fl_right"><a class="btn" href="{{ url_for('search_theater_detail') }}">影城介紹</a></div>
     <!-- ################################################################################################ -->
-  </header>
-</div>
+    </header>
+  </div>
 
-<div class="wrapper row3">
-  <main style="padding:50px;" class="hoc container clear">
-    <div class="theater_intro"></div>
-
-
-<!--四部電影-->
+  <div id="app">
+  <!--四部電影-->
     <div class="wrapper row3">
       <main style="padding:50px 0;text-align:center;" class="hoc container clear">
         <div style="margin-bottom:20px;" class="movie_table">
-              <div class="nospace_clear">
-                <div class="one_quarter first">
-                    <div >
-                    <div style="margin-bottom:50px;" class="movie_choose" id="theater">
-                    <select v-model="selected" name="" id="movie" @change="getMovie(selected)" >
-                        <option value="" selected disabled>請選擇電影</option>
-                        <option value="1">A</option>
-                        <option value="2">B</option>
-                    </select>
-                    </div>
-
-                    <p class = "movie_name">阿凡達：水之道</p>
-                    <p class = "en_movie_name">VATAR THE WAY OF WATER</p>
-                    <img name="movie_poster" src="https://www.vscinemas.com.tw/vsweb/upload/film/film_20221121003.jpg"  alt="">
-                    </div>
-                    <!-- <p class="ch_movie_name">阿凡達：水之道</p>
-                    <p class="en_movie_name">VATAR THE WAY OF WATER</p>
-                    <p class="release_date">上映日期: 2023-2-22</p> -->
-                <div class="info">
-                    <p >上映日期: 2023-2-22</p>
-                    <p >導演: 詹姆斯卡麥隆</p>
-                    <p >演員: 山姆沃辛頓、柔伊莎達娜、凱特溫絲蕾、雪歌妮薇佛、楊紫瓊、傑梅奈克萊門特</p>
-                    <p >類型: 奇幻/科幻、冒險、劇情</p>
-                    <p >片長: 3 時 12 分</p>
-                </div>
-                <div class="intro">
-                    <p >電影介紹：</p>
-                    <p >《阿凡達：水之道》設於首集超過十年後，成為納美人並與奈蒂莉共結連理的傑克，在潘朵拉星上與他們的孩子組成蘇里一家，過著與世無爭的幸福生活，未料威脅再度降臨，他們不遺餘力保護彼此，為了生存再度奮戰，還得承受隨之而來的悲痛創傷。</p>
-                </div>
-                   
+          <div class="nospace_clear">
+            <div style="margin-bottom:50px;" class="movie_choose" id="movie">
+              <select v-model="selected" id="_movie" @change="getMovieInfo(selected)" >
+                <option value="" selected disabled>請選擇電影</option>
+                <option value="1">A</option>
+                <option value="2">B</option>
+              </select>
+            </div>
+            <div v-show="displayMovie">
+              <div class="two_quarter first">
+                {% raw %}
+                <p style="font-size:25px;">{{ name }}</p>
+                <img name= "movie_poster" :src="img">
               </div>
+              <div class="two_quarter" style="font-size: medium; text-align: left;">
+                <br><br><br>
+                <p><strong>上映日期:</strong> {{ date }}</p>
+                <p><strong>導演:</strong> {{ director }}</p>
+                <p><strong>演員:</strong> {{ actors }}</p>
+                <p><strong>類型:</strong> {{ type }}</p>
+                <p><strong>片長:</strong> {{ total_time }}</p>
+                <p><strong>電影介紹：</strong></p>
+                <p>{{ introduction }}</p>
               </div>
+              {% endraw %}
+            </div>
+          </div>
         </div>
       </main>
     </div>
-
+  </div>
 
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function(){
-    let quarter = document.getElementById('quarter');
-    quarter.addEventListener('mouseover', function() {
-      this.style.backgroundColor = 'blue';
-    })
-  })
-</script>
-
-<!-- jquery 連結 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- jquery ui 連結 -->
-<script src = "../static/jquery2.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.backtotop.js"></script>
+<script src="../static/js/jquery.mobilemenu.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
 
+<!-- 設定根目錄 -->
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
 
+<!-- Vue app -->
+<script type="module">
+  import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+  createApp({
+    data() {
+      return {
+        selected: '',
+        displayMovie: false,
+        name: '',
+        date: '',
+        director: '',
+        actors: '',
+        type: '',
+        total_time: '',
+        introduction: '',
+        img: ''
+      }
+    },
+    mounted () {
+        axios.get($SCRIPT_ROOT + '/movie_list')
+        .then(res => {
+          console.log(res.data)
+          for (var i = 0; i < res.data.length; i++) {
+            _movie.options[res.data[i].id] = new Option(res.data[i].name, res.data[i].id)
+          } 
+        })
+        .catch(err => {
+          console.error(err); 
+        })
+    },
+    methods: {
+      getMovieInfo: function(id) {
+        axios.post($SCRIPT_ROOT + '/movie_info', {
+          movie_id: id
+        })
+        .then(res => {
+          console.log(res)
+          this.name = res.data.name
+          this.date = res.data.date
+          this.director = res.data.director
+          this.actors = res.data.actors
+          this.type = res.data.type
+          this.total_time = res.data.total_time
+          this.introduction = res.data.introduction
+          this.img = res.data.img
+          this.displayMovie = true
+        })
+        .catch(err => {
+          console.error(err); 
+        })
+      },
+    }
+  }).mount('#app')
+</script>
 
 </body>
 </html>
